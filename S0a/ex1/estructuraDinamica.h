@@ -7,14 +7,13 @@
  *
  * IMPORTANT:
  * Aquest fitxer es comu a tots els programes que usen l'estructura dinamica
- * simplement encadenada amb final. 
- * 
- * Nomes cal implementar els metodes que demana cada enunciat. 
+ * simplement encadenada amb final.
+ *
+ * Nomes cal implementar els metodes que demana cada enunciat.
  */
 
 #ifndef ESTRUCTURA_DINAMICA_FINAL_H
 #define ESTRUCTURA_DINAMICA_FINAL_H
-
 
 #include <cstdlib>
 #include <iostream>
@@ -22,39 +21,42 @@
 using namespace std;
 
 struct node {
-    int dada;
-    node *seguent;
+  int dada;
+  node *seguent;
 };
 
-class estructuraDinamica  // Final
+class estructuraDinamica // Final
 {
 public:
-    estructuraDinamica();
-    estructuraDinamica(estructuraDinamica & e);
-    
-    void AfegirInici(int i);
-    void AfegirFinal(int i);
-    void InserirOrdenadament(int i);
+  estructuraDinamica();
+  estructuraDinamica(estructuraDinamica &e);
 
-    void AfegirDespres(int i, int j);
-    void AfegirAbans(int i, int j);
-    
-    void Esborrar(int i);
-    int TreureFinal();
-    bool Existeix(int i) const;
+  void AfegirInici(int i);
+  void AfegirFinal(int i);
+  void InserirOrdenadament(int i);
 
-    void OmplirInici(int n);
-    void OmplirFinal(int n);
-    int nElements() const;
+  void AfegirDespres(int i, int j);
+  void AfegirAbans(int i, int j);
 
-    void Llistar() const;
+  void Esborrar(int i);
+  int TreureFinal();
+  bool Existeix(int i) const;
 
-    ~estructuraDinamica();
+  void OmplirInici(int n);
+  void OmplirFinal(int n);
+  int nElements() const;
+
+  void Llistar() const;
+
+  ~estructuraDinamica();
 
 private:
-    node *inici;
-    node *final;
-};
+  node *inici;
+  node *final;
 
+  void alliberar();
+  // Pre: --;
+  // Post: allibera memòria
+};
 
 #endif

@@ -17,7 +17,25 @@ estructuraDinamica::estructuraDinamica() {
   inici = final = NULL;
 }
 
-estructuraDinamica::~estructuraDinamica() {}
+estructuraDinamica::~estructuraDinamica() { alliberar(); }
+
+void estructuraDinamica::alliberar() {
+
+  while (inici != NULL) {
+    final = inici;
+    inici = inici->seguent;
+    delete final;
+  }
+  final = NULL;
+}
+
+void estructuraDinamica::AfegirFinal(int i) {
+  // Pre: --
+  // Post: i inserit afegit al final
+  node *p = new node{i, NULL};
+  final->seguent = p;
+  final = final->seguent;
+}
 
 void estructuraDinamica::Llistar() const {
   // aquest metode es dona fet i no es pot canviar
