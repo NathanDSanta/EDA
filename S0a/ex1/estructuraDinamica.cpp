@@ -17,10 +17,15 @@ estructuraDinamica::estructuraDinamica() {
   inici = final = NULL;
 }
 
-estructuraDinamica::~estructuraDinamica() { alliberar(); }
+estructuraDinamica::~estructuraDinamica() {
+  // Pre: --;
+  // Post: objecte destruit
+  alliberar();
+}
 
 void estructuraDinamica::alliberar() {
-
+  // Pre: --;
+  // Post: allibera la memòria
   while (inici != NULL) {
     final = inici;
     inici = inici->seguent;
@@ -31,10 +36,15 @@ void estructuraDinamica::alliberar() {
 
 void estructuraDinamica::AfegirFinal(int i) {
   // Pre: --
-  // Post: i inserit afegit al final
+  // Post: i afegit al final
   node *p = new node{i, NULL};
-  final->seguent = p;
-  final = final->seguent;
+  if (final != NULL) {
+    final->seguent = p;
+    final = final->seguent;
+  } else {
+    final = p;
+    inici = p;
+  }
 }
 
 void estructuraDinamica::Llistar() const {
