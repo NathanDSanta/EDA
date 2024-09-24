@@ -25,6 +25,7 @@ template <class elem> Llista<elem>::~Llista() {
   }
 }
 int main() {
+  cout << "Hello World!";
   Llista<int> llista;
   return 0;
 }
