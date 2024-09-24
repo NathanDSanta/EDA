@@ -1,0 +1,14 @@
+Aquest directori conté
+
+- main
+- Conjunt.h, Conjunt.cpp, un conjunt genèric
+- ConjuntEnters.h, ConjuntEnters.cpp, la instanciació del Conjunt
+
+Detall: s'ha deixat un error en el codi per ajudar a entendre el funcionament
+
+
+Per compilar:
+
+g++ -c main.cpp
+g++ -c ConjuntEnters.cpp
+g++ -o main main.o ConjuntEnters.o
