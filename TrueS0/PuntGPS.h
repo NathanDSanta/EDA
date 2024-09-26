@@ -9,19 +9,20 @@ using namespace std;
 
 class PuntGPS {
 public:
-    PuntGPS(double latitud, double longitud, double elevacio);
-    PuntGPS();
+  PuntGPS(double latitud, double longitud, double elevacio);
+  PuntGPS();
 
-    double latitud() const ; // retorna latitud en graus
-    double longitud() const; // retorna longitud en graus
-    double elevacio() const; // retorna elevacio en metres
+  double latitud() const;  // retorna latitud en graus
+  double longitud() const; // retorna longitud en graus
+  double elevacio() const; // retorna elevacio en metres
 
-    // distancia entre this i p1
-    double operator - (const PuntGPS &p1) const;
-    friend ostream &operator<<(ostream &o, const PuntGPS &p); 
+  // distancia entre this i p1
+  double operator-(const PuntGPS &p1) const;
+  friend ostream &operator<<(ostream &o, const PuntGPS &p);
+
 private:
-    double _latitud; // latitud en graus
-    double _longitud; // latitud en graus
-    double _elevacio; // elevació en metres
+  double _latitud;  // latitud en graus
+  double _longitud; // latitud en graus
+  double _elevacio; // elevació en metres
 };
-#endif //EXEMPLE_PUNTGPS_H
+#endif // EXEMPLE_PUNTGPS_H
