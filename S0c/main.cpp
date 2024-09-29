@@ -6,8 +6,9 @@ bool ben_parentitzada(pilaDinamica &p, char elem) {
   bool oki = true;
   if (elem == '(' || elem == '{' || elem == '[')
     p.Empila(elem);
-  else if (elem == p.Cim() + 2 || // Codi ASCII: '{' + 2 = '}' i '[' + 2 = ']'
-           elem == p.Cim() + 1)   // i '(' + 1 = ')'
+  else if (!p.Buida() &&
+           (elem == p.Cim() + 2 || // Codi ASCII: '{' + 2 = '}' i '[' + 2 = ']'
+            elem == p.Cim() + 1))  // i '(' + 1 = ')'
     p.Desempila();
   else
     oki = false;
