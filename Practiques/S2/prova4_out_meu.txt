@@ -1,0 +1,1 @@
+Els primers 10 nombres primers són: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
