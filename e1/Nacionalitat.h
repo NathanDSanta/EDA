@@ -1,3 +1,6 @@
+// Darius Natan Santa
+// u1994947
+// Exercici 1
 #ifndef NACIONALITAT_H
 #define NACIONALITAT_H
 #include <iostream>

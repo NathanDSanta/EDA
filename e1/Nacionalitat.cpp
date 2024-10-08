@@ -1,3 +1,6 @@
+// Darius Natan Santa
+// u1994947
+// Exercici 1
 #include "Nacionalitat.h"
 
 Nacionalitat::Nacionalitat(int id, string nom) {

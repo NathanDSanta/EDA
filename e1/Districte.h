@@ -1,7 +1,9 @@
+// Darius Natan Santa
+// u1994947
+// Exercici 1
 #ifndef DISTRICTE_H
 #define DISTRICTE_H
 #include "Persona.h"
-#include <cstdlib>
 #include <list>
 
 using namespace std;

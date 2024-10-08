@@ -1,3 +1,6 @@
+// Darius Natan Santa
+// u1994947
+// Exercici 1
 #ifndef ESTUDI_H
 #define ESTUDI_H
 #include <iostream>

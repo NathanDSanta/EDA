@@ -1,6 +1,10 @@
+// Darius Natan Santa
+// u1994947
+// Exercici 1
 #ifndef PADRO_H
 #define PADRO_H
 #include "Districte.h"
+#include <istream>
 
 using namespace std;
 

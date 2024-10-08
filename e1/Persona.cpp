@@ -1,3 +1,6 @@
+// Darius Natan Santa
+// u1994947
+// Exercici 1
 #include "Persona.h"
 
 Persona::Persona(int codiNivellEstudis, const string &nivellEstudis,

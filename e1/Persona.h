@@ -1,3 +1,6 @@
+// Darius Natan Santa
+// u1994947
+// Exercici 1
 #ifndef PERSONA_H
 #define PERSONA_H
 #include "Estudi.h"

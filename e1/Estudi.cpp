@@ -1,3 +1,6 @@
+// Darius Natan Santa
+// u1994947
+// Exercici 1
 #include "Estudi.h"
 
 Estudi::Estudi(int id, string nom) {
