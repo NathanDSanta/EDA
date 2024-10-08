@@ -34,6 +34,9 @@ int demanar_opcio(string missatge) {
 bool habitant_complet() {
   // Pre: --; Post: retorna si l'habitant conte totes les dades correctes
   bool correcte = true;
+  // ToDo   expressio boleana per comprovar si existeixen tots els camps (o
+  // ToDo   fer-ho directament al llegir)
+  return correcte;
 }
 
 void llegir_dades(ifstream &fin, Padro &p) {
