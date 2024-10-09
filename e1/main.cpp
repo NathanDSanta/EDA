@@ -5,6 +5,76 @@
 #include <fstream>
 #include <iostream>
 #include <limits>
+#include <list>
+#include <ostream>
+#include <string>
+#include <utility>
+#include <vector>
+
+// MOSTRAR
+void mostrar1(const int &dades) {
+  // Pre: --; Post: mostra missatge opcio 1
+  cout << "*******************\n"
+       << "* 1: Llegir dades *\n"
+       << "*******************\n"
+       << "Numero de linies: " << dades;
+}
+void mostrar2(const vector<long> &dades) {
+  // Pre: --; Post: mostra missatge opcio 2
+  cout << "***************************************\n"
+       << "* 2: Nombre d'habitants per districte *\n"
+       << "***************************************\n";
+  long suma = 0;
+  for (int i = 1; i < 8; i++) {
+    suma += dades[i];
+    cout << "Districte " << i << " \thabitants:\t\t" << dades[i] << endl;
+    cout << "TOTAL : " << suma << endl;
+  }
+}
+void mostrar3(const list<string> &dades) {
+  // Pre: --; Post: mostra missatge opcio 3
+  cout << "**************\n"
+       << "* 3: Estudis *\n"
+       << "**************\n";
+  cout << "Estudis:\n";
+  for (list<string>::const_iterator i = dades.begin(); i != dades.end(); i++) {
+    cout << " - " << *i << endl;
+  }
+}
+void mostrar4(const vector<pair<string, double>> &dades) {
+  // Pre: --; Post: mostra missatge opcio 4
+  cout << "*********************\n"
+       << "* 4: Edats Mitjanes *\n"
+       << "*********************\n";
+  for (vector<pair<string, double>>::const_iterator i = dades.begin(); i != dades.end(); i++) {
+    cout << "\t\t" << i->first << "\t\t\t" << "Promig Edat:\t\t" << i->second << endl;
+  }
+}
+void mostrar5(const pair<list<string>, list<string>> &dades, const int &districte1, const int &districte2) {
+  // Pre: --; Post: mostra missatge opcio 5
+  cout << "*******************************\n"
+       << "* 5: Nacionalitats exclusives *\n"
+       << "*******************************\n";
+  cout << "Districte " << districte1 << ":\n";
+  for (list<string>::const_iterator i = dades.first.begin(); i != dades.first.end(); i++) {
+    cout << " - " << *i << endl;
+  }
+  cout << "Districte " << districte2 << ":\n";
+  for (list<string>::const_iterator i = dades.second.begin(); i != dades.second.end(); i++) {
+    cout << " - " << *i << endl;
+  }
+}
+void mostrar6(const vector<pair<string, long>> &dades, const int &edat, const int &nacionalitat) {
+  // Pre: --; Post: mostra missatge opcio 6
+  cout << "****************************************\n"
+       << "* 6: Compta edat i nació per districte *\n"
+       << "****************************************\n";
+  cout << "Edat:" << edat << "\tCodi Nacionalitat:" << nacionalitat << endl;
+  for (vector<pair<string, long>>::const_iterator i = dades.begin(); i != dades.end(); i++) {
+    if (i->second != 0)
+      cout << i->first << ": " << i->second << endl;
+  }
+}
 
 int stringToInt(string s) {
   if (s.length() == 0)
@@ -23,31 +93,21 @@ int readInt() {
   return stringToInt(aux);
 }
 
-int demanar_opcio(string missatge) {
+int demanar_opcio() {
   // Pre: --; Post: retorna la opcio entrada per teclat
-  cerr << missatge << endl;
   int opcio;
   cin >> opcio;
   return opcio;
 }
 
-bool habitant_complet() {
-  // Pre: --; Post: retorna si l'habitant conte totes les dades correctes
-  bool correcte = true;
-  // ToDo   expressio boleana per comprovar si existeixen tots els camps (o
-  // ToDo   fer-ho directament al llegir)
-  return correcte;
-}
-
-void llegir_dades(ifstream &fin, Padro &p) {
+void llegir_dades(ifstream &fin, Padro &p, int &linies) {
   // Pre: --; Post: llegeix les dades de fitxer
-  cerr << "Insereix la ruta de l'arxiu" << endl;
+  linies = 0;
   string ruta;
   cin >> ruta;
   fin.open(ruta);
   while (!fin.is_open()) {
     fin.clear();
-    cerr << "Ruta equivocada!" << endl;
     cin >> ruta;
     fin.open(ruta);
   }
@@ -63,9 +123,8 @@ void llegir_dades(ifstream &fin, Padro &p) {
       any_naixement = readInt();
       codi_nacionalitat = readInt();
       cin >> nacionalitat;
-      bool guardar = habitant_complet();
-      p.afegir(any, districte, codi_estudis, nivell_estudis, any_naixement,
-               codi_nacionalitat, nacionalitat);
+      p.afegir(any, districte, codi_estudis, nivell_estudis, any_naixement, codi_nacionalitat, nacionalitat);
+      linies++;
     }
     fin.close();
   }
@@ -73,26 +132,42 @@ void llegir_dades(ifstream &fin, Padro &p) {
 
 int main() {
   Padro padro;
-  int menu = demanar_opcio("");
+  int menu = demanar_opcio();
   while (menu != 0) {
     switch (menu) {
     case 1: {
       ifstream fitxer_entrada;
-      llegir_dades(fitxer_entrada, padro);
+      int linies;
+      llegir_dades(fitxer_entrada, padro, linies);
+      mostrar1(linies);
       break;
     }
-    case 2:
-      break;
-    case 3:
-      break;
-    case 4:
-      break;
-    case 5:
-      break;
-    case 6:
-      break;
+    case 2: {
+      vector<long> num_habitants = padro.obtenirNumHabitantsPerDistricte();
+      mostrar2(num_habitants);
+    } break;
+    case 3: {
+      list<string> estudis = padro.resumEstudis();
+      mostrar3(estudis);
+    } break;
+    case 4: {
+      vector<pair<string, double>> edats = padro.resumEdat();
+      mostrar4(edats);
+    } break;
+    case 5: {
+      int districte1, districte2;
+      cin >> districte1 >> districte2;
+      pair<list<string>, list<string>> nacio_exc = padro.diferentsNacionalitats(districte1, districte2);
+      mostrar5(nacio_exc, districte1, districte2);
+    } break;
+    case 6: {
+      int edat, nacionalitat;
+      cin >> edat >> nacionalitat;
+      vector<pair<string, long>> edatNacioDistricte = padro.edatNacioPerDistricte(edat, nacionalitat);
+      mostrar6(edatNacioDistricte, edat, nacionalitat);
+    } break;
     }
-    menu = demanar_opcio("");
+    menu = demanar_opcio();
   }
   return 0;
 }
