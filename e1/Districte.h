@@ -3,12 +3,7 @@
 // Exercici 1
 #ifndef DISTRICTE_H
 #define DISTRICTE_H
-#include "Estudi.h"
-#include "Nacionalitat.h"
 #include "Persona.h"
-#include <list>
-
-using namespace std;
 
 class Districte {
 public:

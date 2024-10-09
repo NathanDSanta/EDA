@@ -2,10 +2,6 @@
 // u1994947
 // Exercici 1
 #include "Districte.h"
-#include "Persona.h"
-#include <list>
-#include <string>
-#include <vector>
 
 Districte::Districte() {
   // Pre: --; Post: objecte creat

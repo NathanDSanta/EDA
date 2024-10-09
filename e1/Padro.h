@@ -1,19 +1,9 @@
-// Darius
-// Natan
-// Santa
+// Darius Natan Santa
 // u1994947
-// Exercici
-// 1
+// Exercici 1
 #ifndef PADRO_H
 #define PADRO_H
-#include <istream>
-#include <list>
-#include <string>
-#include <vector>
-
 #include "Districte.h"
-#include "Estudi.h"
-#include "Nacionalitat.h"
 
 using namespace std;
 

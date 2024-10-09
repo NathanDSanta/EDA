@@ -5,8 +5,6 @@
 #define PERSONA_H
 #include "Estudi.h"
 #include "Nacionalitat.h"
-#include <string>
-using namespace std;
 
 class Persona {
 public:

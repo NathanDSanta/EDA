@@ -3,6 +3,7 @@
 // Exercici 1
 #ifndef NACIONALITAT_H
 #define NACIONALITAT_H
+#include <cstdlib>
 #include <iostream>
 using namespace std;
 

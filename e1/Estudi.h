@@ -3,7 +3,10 @@
 // Exercici 1
 #ifndef ESTUDI_H
 #define ESTUDI_H
+#include <fstream>
 #include <iostream>
+#include <list>
+#include <vector>
 using namespace std;
 
 class Estudi {

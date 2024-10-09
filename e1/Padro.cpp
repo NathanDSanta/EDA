@@ -2,11 +2,6 @@
 // u1994947
 // Exercici 1
 #include "Padro.h"
-#include "Districte.h"
-#include <list>
-#include <string>
-#include <utility>
-#include <vector>
 
 Padro::Padro() { a_districtes = vector<Districte>(7); } // Els atributs tenen constructor per defecte;
 
