@@ -4,7 +4,9 @@
 #ifndef ESTUDI_H
 #define ESTUDI_H
 #include <fstream>
+#include <iomanip>
 #include <iostream>
+#include <limits>
 #include <list>
 #include <vector>
 using namespace std;

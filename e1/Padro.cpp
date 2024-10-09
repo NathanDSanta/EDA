@@ -7,7 +7,7 @@ Padro::Padro() { a_districtes = vector<Districte>(7); } // Els atributs tenen co
 
 int Padro::afegir(int any, int districte, int codiNivellEstudis, const string &nivellEstudis, int anyNaixement, int codiNacionalitat, const string &nomNacionalitat) {
   // Pre: --; Post: afegeix la persona al padro
-  if (codiNivellEstudis == 0 || codiNacionalitat == -1)
+  if (codiNacionalitat == -1)
     return 0;
 
   a_districtes[districte].afegir(any, codiNivellEstudis, nivellEstudis, anyNaixement, codiNacionalitat, nomNacionalitat);
@@ -17,7 +17,7 @@ int Padro::afegir(int any, int districte, int codiNivellEstudis, const string &n
 vector<long> Padro::obtenirNumHabitantsPerDistricte() const {
   // Pre: --; Post: retorna el numero d'habitants en cada districte
   vector<long> vec(7);
-  for (int i = 1; i < 8; i++) {
+  for (int i = 1; i < 7; i++) {
     vec[i] = a_districtes[i].obtenirNumHabitants();
   }
   return vec;
@@ -27,7 +27,7 @@ list<string> Padro::resumEstudis() const {
   // Pre: --; Post: retorna tots els tipus diferents d'estudis
   list<string> est;
 
-  for (int i = 1; i < 8; i++) {
+  for (int i = 1; i < 7; i++) {
     est.merge(a_districtes[i].resumEstudis());
   }
   est.unique();
@@ -39,7 +39,7 @@ list<string> Padro::resumEstudis() const {
 vector<pair<string, double>> Padro::resumEdat() const {
   // Pre: --; Post: retorna la edat mitjana per districte
   vector<pair<string, double>> res(7);
-  for (int i = 1; i < 8; i++) {
+  for (int i = 1; i < 7; i++) {
     res[i] = pair<string, double>(DISTRICTES[i], a_districtes[i].obtenirEdatMitjana());
   }
   return res;
@@ -63,7 +63,7 @@ vector<pair<string, long>> Padro::edatNacioPerDistricte(int edat, int codiNacion
   // Pre: --; Post: retorna el nombre d'habitants que son de 'codiNacionalitat'
   // i tenen 'edat' anys
   vector<pair<string, long>> vec(7);
-  for (int i = 1; i < 8; i++) {
+  for (int i = 1; i < 7; i++) {
     vec[i] = pair<string, long>(DISTRICTES[i], a_districtes[i].comptaEdatNacionalitat(edat, codiNacionalitat));
   }
   return vec;

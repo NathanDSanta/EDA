@@ -35,9 +35,8 @@ list<string> Districte::resumEstudis() const {
 
 double Districte::obtenirEdatMitjana() const {
   // Pre: --; Post: retorna l'edat mitjana
-  list<Persona>::const_iterator i = a_hab.begin();
   double mitjana = 0;
-  while (i != a_hab.end()) {
+  for (list<Persona>::const_iterator i = a_hab.begin(); i != a_hab.end(); i++) {
     mitjana += a_any - i->obtenirAnyNaixement();
   }
   mitjana /= a_num_hab;

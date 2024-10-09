@@ -2,14 +2,7 @@
 // u1994947
 // Exercici 1
 #include "Padro.h"
-#include <fstream>
-#include <iostream>
-#include <limits>
-#include <list>
-#include <ostream>
-#include <string>
-#include <utility>
-#include <vector>
+#include <iomanip>
 
 // MOSTRAR
 void mostrar1(const int &dades) {
@@ -17,7 +10,7 @@ void mostrar1(const int &dades) {
   cout << "*******************\n"
        << "* 1: Llegir dades *\n"
        << "*******************\n"
-       << "Numero de linies: " << dades;
+       << "Numero de linies: " << dades << endl;
 }
 void mostrar2(const vector<long> &dades) {
   // Pre: --; Post: mostra missatge opcio 2
@@ -25,18 +18,17 @@ void mostrar2(const vector<long> &dades) {
        << "* 2: Nombre d'habitants per districte *\n"
        << "***************************************\n";
   long suma = 0;
-  for (int i = 1; i < 8; i++) {
+  for (int i = 1; i < 7; i++) {
     suma += dades[i];
-    cout << "Districte " << i << " \thabitants:\t\t" << dades[i] << endl;
-    cout << "TOTAL : " << suma << endl;
+    cout << "Districte " << i << "   habitants:" << setw(7) << right << dades[i] << endl;
   }
+  cout << "TOTAL : " << suma << endl;
 }
 void mostrar3(const list<string> &dades) {
   // Pre: --; Post: mostra missatge opcio 3
   cout << "**************\n"
        << "* 3: Estudis *\n"
        << "**************\n";
-  cout << "Estudis:\n";
   for (list<string>::const_iterator i = dades.begin(); i != dades.end(); i++) {
     cout << " - " << *i << endl;
   }
@@ -44,10 +36,10 @@ void mostrar3(const list<string> &dades) {
 void mostrar4(const vector<pair<string, double>> &dades) {
   // Pre: --; Post: mostra missatge opcio 4
   cout << "*********************\n"
-       << "* 4: Edats Mitjanes *\n"
+       << "* 4: Edats mitjanes *\n"
        << "*********************\n";
-  for (vector<pair<string, double>>::const_iterator i = dades.begin(); i != dades.end(); i++) {
-    cout << "\t\t" << i->first << "\t\t\t" << "Promig Edat:\t\t" << i->second << endl;
+  for (vector<pair<string, double>>::const_iterator i = dades.begin() + 1; i != dades.end(); i++) {
+    cout << "\t " << setw(32) << left << i->first << "Promig Edat:" << setw(11) << right << setprecision(4) << i->second << endl;
   }
 }
 void mostrar5(const pair<list<string>, list<string>> &dades, const int &districte1, const int &districte2) {
@@ -55,11 +47,11 @@ void mostrar5(const pair<list<string>, list<string>> &dades, const int &district
   cout << "*******************************\n"
        << "* 5: Nacionalitats exclusives *\n"
        << "*******************************\n";
-  cout << "Districte " << districte1 << ":\n";
+  cout << "Districte " << districte1 << ": \n";
   for (list<string>::const_iterator i = dades.first.begin(); i != dades.first.end(); i++) {
     cout << " - " << *i << endl;
   }
-  cout << "Districte " << districte2 << ":\n";
+  cout << "Districte " << districte2 << ": \n";
   for (list<string>::const_iterator i = dades.second.begin(); i != dades.second.end(); i++) {
     cout << " - " << *i << endl;
   }
@@ -69,7 +61,7 @@ void mostrar6(const vector<pair<string, long>> &dades, const int &edat, const in
   cout << "****************************************\n"
        << "* 6: Compta edat i nació per districte *\n"
        << "****************************************\n";
-  cout << "Edat:" << edat << "\tCodi Nacionalitat:" << nacionalitat << endl;
+  cout << "Edat:" << edat << "  Codi Nacionalitat:" << nacionalitat << endl;
   for (vector<pair<string, long>>::const_iterator i = dades.begin(); i != dades.end(); i++) {
     if (i->second != 0)
       cout << i->first << ": " << i->second << endl;
@@ -86,10 +78,10 @@ int stringToInt(string s) {
   return stoi(s);
 }
 
-int readInt() {
+int readInt(ifstream &fin) {
   // Pre: --; Post: retorna un int llegit amb casting de string
   string aux;
-  cin >> aux;
+  fin >> aux;
   return stringToInt(aux);
 }
 
@@ -116,15 +108,16 @@ void llegir_dades(ifstream &fin, Padro &p, int &linies) {
       fin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
       string nivell_estudis, nacionalitat;
       int any, districte, codi_estudis, any_naixement, codi_nacionalitat;
-      any = readInt();
-      districte = readInt();
-      codi_estudis = readInt();
-      cin >> nivell_estudis;
-      any_naixement = readInt();
-      codi_nacionalitat = readInt();
-      cin >> nacionalitat;
-      p.afegir(any, districte, codi_estudis, nivell_estudis, any_naixement, codi_nacionalitat, nacionalitat);
-      linies++;
+      any = readInt(fin);
+      districte = readInt(fin);
+      codi_estudis = readInt(fin);
+      fin >> nivell_estudis;
+      any_naixement = readInt(fin);
+      codi_nacionalitat = readInt(fin);
+      fin >> nacionalitat;
+      int afegit = p.afegir(any, districte, codi_estudis, nivell_estudis, any_naixement, codi_nacionalitat, nacionalitat);
+      if (afegit == 1)
+        linies++;
     }
     fin.close();
   }

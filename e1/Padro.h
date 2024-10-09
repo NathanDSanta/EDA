@@ -18,7 +18,7 @@ public:
   pair<list<string>, list<string>> diferentsNacionalitats(int districte1, int districte2) const;
 
 private:
-  const string DISTRICTES[7] = {"-", "Carme, Vila-roja", "Eixample, Montilivi", "SWebkitanta Eugenia, Mas Xirgu", "Casc Antic", "Montjuic, Pont major", "Sant Ponc, Domeny, Taiala"};
+  const string DISTRICTES[7] = {"-", "Carme, Vila-roja", "Eixample, Montilivi", "Santa Eugenia, Mas Xirgu", "Casc Antic", "Montjuic, Pont major", "Sant Ponc, Domeny, Taiala"};
 
   vector<Districte> a_districtes;
 };
