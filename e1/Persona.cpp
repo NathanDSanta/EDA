@@ -24,3 +24,7 @@ int Persona::obtenirCodiPaisNaixement() const {
   // Pre: --; Post: retorna el codi del pais de naixement
   return a_nac.obtenirId();
 }
+string Persona::obtenirNomPaisNaixement() const {
+  // Pre: --; Post: retorna el codi del pais de naixement
+  return a_nac.obtenirNom();
+}
