@@ -2,6 +2,9 @@
 // u1994947
 // Exercici 1
 #include "Padro.h"
+#include <string>
+#include <utility>
+#include <vector>
 
 Padro::Padro() { a_districtes = vector<Districte>(7); } // Els atributs tenen constructor per defecte;
 
@@ -38,11 +41,31 @@ list<string> Padro::resumEstudis() const {
 
 vector<pair<string, double>> Padro::resumEdat() const {
   // Pre: --; Post: retorna la edat mitjana per districte
-  vector<pair<string, double>> res(7);
+  vector<pair<string, double>> res;
   for (int i = 1; i < 7; i++) {
-    res[i] = pair<string, double>(DISTRICTES[i], a_districtes[i].obtenirEdatMitjana());
+    insertar(res, pair<string, double>(DISTRICTES[i], a_districtes[i].obtenirEdatMitjana()));
   }
   return res;
+}
+
+void Padro::insertar(vector<pair<string, double>> &vec, const pair<string, double> &pair) {
+  // Pre: --; Post: insereix "pair" a "vec"
+  vector<std::pair<string, double>>::const_iterator i = vec.begin();
+  bool trobat = false;
+  if (vec.empty())
+    vec.push_back(pair);
+  else {
+    while (i != vec.end() && !trobat) {
+      if (pair.second < i->second)
+        trobat = true;
+      else
+        i++;
+    }
+  }
+  if (trobat)
+    vec.insert(i, pair);
+  else
+    vec.push_back(pair);
 }
 
 pair<list<string>, list<string>> Padro::diferentsNacionalitats(int districte1, int districte2) const {

@@ -3,6 +3,8 @@
 // Exercici 1
 #include "Padro.h"
 #include <iomanip>
+#include <string>
+#include <utility>
 
 // MOSTRAR
 void mostrar1(const int &dades) {
@@ -97,11 +99,12 @@ void llegir_dades(ifstream &fin, Padro &p, int &linies) {
   linies = 0;
   string ruta;
   cin >> ruta;
-  fin.open(ruta);
+  fin.open(ruta.c_str());
   while (!fin.is_open()) {
+    fin.close();
     fin.clear();
     cin >> ruta;
-    fin.open(ruta);
+    fin.open(ruta.c_str());
   }
   while (fin.is_open()) {
     while (!fin.eof()) {
@@ -145,6 +148,7 @@ int main() {
     } break;
     case 4: {
       vector<pair<string, double>> edats = padro.resumEdat();
+
       mostrar4(edats);
     } break;
     case 5: {

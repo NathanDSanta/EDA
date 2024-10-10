@@ -34,11 +34,11 @@ TOTAL : 102489
 * 4: Edats mitjanes *
 *********************
 	 Carme, Vila-roja                Promig Edat:      39.77
-	 Eixample, Montilivi             Promig Edat:      42.76
 	 Santa Eugenia, Mas Xirgu        Promig Edat:      40.89
 	 Casc Antic                      Promig Edat:      41.46
-	 Montjuic, Pont major            Promig Edat:      42.82
 	 Sant Ponc, Domeny, Taiala       Promig Edat:      42.54
+	 Eixample, Montilivi             Promig Edat:      42.76
+	 Montjuic, Pont major            Promig Edat:      42.82
 *******************************
 * 5: Nacionalitats exclusives *
 *******************************

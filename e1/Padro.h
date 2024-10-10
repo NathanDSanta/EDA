@@ -4,6 +4,9 @@
 #ifndef PADRO_H
 #define PADRO_H
 #include "Districte.h"
+#include <string>
+#include <utility>
+#include <vector>
 
 using namespace std;
 
@@ -19,6 +22,9 @@ public:
 
 private:
   const string DISTRICTES[7] = {"-", "Carme, Vila-roja", "Eixample, Montilivi", "Santa Eugenia, Mas Xirgu", "Casc Antic", "Montjuic, Pont major", "Sant Ponc, Domeny, Taiala"};
+
+  static void insertar(vector<pair<string, double>> &vec, const pair<string, double> &pair);
+  // Pre: --; Post: insereix ordenadament "pair" a "vec"
 
   vector<Districte> a_districtes;
 };
