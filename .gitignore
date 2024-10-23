@@ -5,4 +5,4 @@
 .executables
 *.csv
 *.txt
-!prova*
+!prova*.txt
