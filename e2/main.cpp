@@ -1,5 +1,6 @@
 #include "Padro.h"
-#include "mostra.cpp"
+#include "mostra.h"
+#include <ios>
 #include <iostream>
 using namespace std;
 
@@ -16,6 +17,7 @@ string demanar_string() {
 }
 
 int main() {
+  cout << fixed;
   Padro padro;
   int opcio = demanar_int();
   while (opcio != 0) {
@@ -54,6 +56,7 @@ int main() {
       break;
     }
     }
+    opcio = demanar_int();
   }
   return 0;
 }

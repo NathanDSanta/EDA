@@ -12,7 +12,7 @@
 
 class Districte {
 public:
-  Districte() {};
+  Districte();
   void afegir(int any, int seccio, int codiNivellEstudis, const string &nivellEstudis, int anyNaixement, int codiNacionalitat, const string &nomNacionalitat);
   long obtenirNumHabitants() const;
   double obtenirEdatMitjana() const;

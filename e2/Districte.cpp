@@ -10,6 +10,8 @@
 #include <set>
 #include <utility>
 
+Districte::Districte() { a_any = 0; }
+
 void Districte::afegir(int any, int seccio, int codiNivellEstudis, const string &nivellEstudis, int anyNaixement, int codiNacionalitat, const string &nomNacionalitat) {
   // Pre: cert; Post: persona afegida a la ED
   if (a_any != any)

@@ -18,10 +18,14 @@ Padro::Padro() {}
 
 int Padro::llegirDades(const string &path) {
   // Pre: path = ruta de l'arxiu csv; Post: padro amb les dades llegides;
-  ifstream fin(path.c_str());
+  ifstream fin;
+  fin.open(path.c_str());
 
-  if (!fin.is_open())
+  if (fin.fail()) {
+    fin.close();
+    fin.clear();
     return 0;
+  }
 
   int linies = 0;
   string linia;
@@ -41,11 +45,15 @@ int Padro::llegirDades(const string &path) {
 
     if (any != -1 && districte != -1 && seccio != -1 && codiNivellEstudis != -1 && anyNaixement != -1 && codiNacionalitat != -1) {
       map<int, vector<Districte>>::iterator pos = a_districtes.find(any);
-      if (pos == a_districtes.end())
-        pos = a_districtes.emplace(any, vector<Districte>()).first;
+      if (pos == a_districtes.end()) {
+        vector<Districte> aux;
+        aux.assign(7, Districte());
+        pos = a_districtes.emplace(any, aux).first;
+      }
       pos->second[districte].afegir(any, seccio, codiNivellEstudis, nivellEstudis, anyNaixement, codiNacionalitat, nomNacionalitat);
       linies++;
     }
+    getline(fin, linia);
   }
   fin.close();
   return linies;
@@ -105,7 +113,7 @@ ResumEdats Padro::resumEdat() const {
   ResumEdats res;
   for (map<int, vector<Districte>>::const_iterator i = a_districtes.begin(); i != a_districtes.end(); i++) {
     map<double, string> total;
-    for (int ii = 1; ii < NUM_DISTRICTES + 1; i++) {
+    for (int ii = 1; ii < NUM_DISTRICTES + 1; ii++) {
       total.emplace(i->second[ii].obtenirEdatMitjana(), DISTRICTES[ii]);
     }
     res.emplace(i->first, total);
