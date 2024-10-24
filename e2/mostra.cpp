@@ -2,11 +2,9 @@
 // Arxiu amb les funcions de mostra del exercici 2
 // format ==> 'mostra$()' on $ es el numero de l'opcio
 #include "mostra.h"
-#include <deque>
 #include <iomanip>
 #include <iostream>
 #include <list>
-#include <queue>
 #include <string>
 
 void error(const string &missatge) { cout << "ERROR " << missatge << endl; }

@@ -2,7 +2,6 @@
 #include "mostra.h"
 #include <ios>
 #include <iostream>
-#include <regex>
 using namespace std;
 
 int demanar_int() {
