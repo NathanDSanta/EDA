@@ -44,11 +44,15 @@ int main() {
       mostrar7(districte, padro.nombreEstudisDistricte(districte));
       break;
     }
+
     case 11:
       mostrar11(padro.resumEdat());
       break;
+
     case 14: {
       int any = demanar_int();
+      while (!padro.existeixAny(any))
+        any = demanar_int();
       int districte = demanar_int();
       int edat = demanar_int();
       int codiNacionalitat = demanar_int();
