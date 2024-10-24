@@ -1,5 +1,5 @@
 01
-/home/nathan/documents/uni/EDA/e2/padroCurt.csv
+/home/nathan/documents/uni/EDA/e2/padroLlarg.csv
 02
 2013
 02

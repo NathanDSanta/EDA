@@ -32,6 +32,8 @@ int main() {
     }
     case 4: {
       int any = demanar_int();
+      while (!padro.existeixAny(any))
+        any = demanar_int();
       mostrar4(any, padro.obtenirNumHabitantsPerDistricte(any));
       break;
     }
