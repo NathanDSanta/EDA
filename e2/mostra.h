@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 
+void banner(const int &opcio);
 void error(const string &missatge);
 void mostrar1(const int &linies);
 void mostrar2(const int &any, const bool &existeix);

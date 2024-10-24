@@ -22,6 +22,7 @@ int main() {
   Padro padro;
   int opcio = demanar_int();
   while (opcio != 0) {
+    banner(opcio);
     switch (opcio) {
     case 1:
       mostrar1(padro.llegirDades(demanar_string()));
