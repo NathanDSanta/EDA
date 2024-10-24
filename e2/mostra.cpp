@@ -11,20 +11,49 @@
 
 void error(const string &missatge) { cout << "ERROR " << missatge << endl; }
 
-void mostrar1(const int &linies) {
-  cout << "********************\n"
-       << "* 01: Llegir dades *\n"
-       << "********************\n"
-       << "Numero de linies: ";
-
-  cout << linies << endl;
+void banner(const int &opcio) {
+  switch (opcio) {
+  case 1:
+    cout << "********************\n"
+         << "* 01: Llegir dades *\n"
+         << "********************\n";
+    break;
+  case 2:
+    cout << "********************\n"
+         << "* 02: Existeix any *\n"
+         << "********************\n";
+    break;
+  case 4:
+    cout << "*******************************************\n"
+         << "* 04: Obtenir nombre d'habitants d'un any *\n"
+         << "*******************************************\n";
+    break;
+  case 6:
+    cout << "*************************\n"
+         << "* 06: Resum per estudis *\n"
+         << "*************************\n";
+    break;
+  case 7:
+    cout << "**************************************\n"
+         << "* 07: Nombre d'estudis per districte *\n"
+         << "**************************************\n";
+    break;
+  case 11:
+    cout << "*********************\n"
+         << "* 11: Resum d'edats *\n"
+         << "*********************\n";
+    break;
+  case 14:
+    cout << "********************************************\n"
+         << "* 14: Estudis any,districte, edat i nació *\n"
+         << "********************************************\n";
+    break;
+  }
 }
 
-void mostrar2(const int &any, const bool &existeix) {
-  cout << "********************\n"
-       << "* 02: Existeix any *\n"
-       << "********************\n";
+void mostrar1(const int &linies) { cout << "Numero de linies: " << linies << endl; }
 
+void mostrar2(const int &any, const bool &existeix) {
   cout << "Any:" << any << endl;
   cout << "Any ";
   if (!existeix)
@@ -32,16 +61,7 @@ void mostrar2(const int &any, const bool &existeix) {
   cout << "existent\n";
 }
 
-void mostrar4(const int &any, const vector<long> &dades, deque<int> &errors) {
-  cout << "*******************************************\n"
-       << "* 04: Obtenir nombre d'habitants d'un any *\n"
-       << "*******************************************\n";
-
-  while (!errors.empty()) {
-    error("any " + to_string(errors.front()) + " inexistent");
-    errors.pop_front();
-  }
-
+void mostrar4(const int &any, const vector<long> &dades) {
   cout << "Any:" << any << endl;
   int total = 0;
   for (int i = 1; i < 7; i++) {
@@ -53,9 +73,6 @@ void mostrar4(const int &any, const vector<long> &dades, deque<int> &errors) {
 }
 
 void mostrar6(const ResumEstudis &dades) {
-  cout << "*************************\n"
-       << "* 06: Resum per estudis *\n"
-       << "*************************\n";
   for (ResumEstudis::const_iterator i = dades.begin(); i != dades.end(); i++) {
     set<Estudi>::const_reverse_iterator ii = i->second.rbegin();
     cout << i->first << "  Estudis:" << ii->obtenirNom();
@@ -69,9 +86,6 @@ void mostrar6(const ResumEstudis &dades) {
 }
 
 void mostrar7(int districte, const map<int, int> &dades) {
-  cout << "**************************************\n"
-       << "* 07: Nombre d'estudis per districte *\n"
-       << "**************************************\n";
   cout << "Districte:" << districte << endl;
   for (map<int, int>::const_iterator i = dades.begin(); i != dades.end(); i++) {
     cout << "Any " << i->first << "  Num Estudis:" << i->second << endl;
@@ -79,10 +93,6 @@ void mostrar7(int districte, const map<int, int> &dades) {
 }
 
 void mostrar11(const ResumEdats &dades) {
-  cout << "*********************\n"
-       << "* 11: Resum d'edats *\n"
-       << "*********************\n";
-
   for (ResumEdats::const_iterator i = dades.begin(); i != dades.end(); i++) {
     cout << i->first << ": \n";
     for (map<double, string>::const_iterator ii = i->second.begin(); ii != i->second.end(); ii++) {
@@ -91,16 +101,7 @@ void mostrar11(const ResumEdats &dades) {
   }
 }
 
-void mostrar14(int any, int districte, int edat, int codiNacionalitat, const list<string> &dades, deque<int> &errors) {
-  cout << "********************************************\n"
-       << "* 14: Estudis any,districte, edat i nació *\n"
-       << "********************************************\n";
-
-  while (!errors.empty()) {
-    error("any " + to_string(errors.front()) + " inexistent");
-    errors.pop_front();
-  }
-
+void mostrar14(int any, int districte, int edat, int codiNacionalitat, const list<string> &dades) {
   cout << "Any: " << any << "  Districte:" << districte << "  Edat:" << edat << "  Codi Nacionalitat:" << codiNacionalitat << endl;
   for (list<string>::const_iterator i = dades.begin(); i != dades.end(); i++) {
     cout << *i << endl;

@@ -33,12 +33,11 @@ int main() {
     }
     case 4: {
       int any = demanar_int();
-      deque<int> errors;
       while (!padro.existeixAny(any)) {
-        errors.push_back(any);
+        error("any " + to_string(any) + " inexistent");
         any = demanar_int();
       }
-      mostrar4(any, padro.obtenirNumHabitantsPerDistricte(any), errors);
+      mostrar4(any, padro.obtenirNumHabitantsPerDistricte(any));
       break;
     }
     case 6:
@@ -57,15 +56,14 @@ int main() {
 
     case 14: {
       int any = demanar_int();
-      deque<int> errors;
       while (!padro.existeixAny(any)) {
-        errors.push_back(any);
+        error("any " + to_string(any) + " inexistent");
         any = demanar_int();
       }
       int districte = demanar_int();
       int edat = demanar_int();
       int codiNacionalitat = demanar_int();
-      mostrar14(any, districte, edat, codiNacionalitat, padro.estudisEdat(any, districte, edat, codiNacionalitat), errors);
+      mostrar14(any, districte, edat, codiNacionalitat, padro.estudisEdat(any, districte, edat, codiNacionalitat));
       break;
     }
     }
