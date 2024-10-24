@@ -2,8 +2,14 @@
 // Arxiu amb les funcions de mostra del exercici 2
 // format ==> 'mostra$()' on $ es el numero de l'opcio
 #include "mostra.h"
+#include <deque>
 #include <iomanip>
-#include <ios>
+#include <iostream>
+#include <list>
+#include <queue>
+#include <string>
+
+void error(const string &missatge) { cout << "ERROR " << missatge << endl; }
 
 void mostrar1(const int &linies) {
   cout << "********************\n"
@@ -26,10 +32,15 @@ void mostrar2(const int &any, const bool &existeix) {
   cout << "existent\n";
 }
 
-void mostrar4(const int &any, const vector<long> &dades) {
+void mostrar4(const int &any, const vector<long> &dades, deque<int> &errors) {
   cout << "*******************************************\n"
        << "* 04: Obtenir nombre d'habitants d'un any *\n"
        << "*******************************************\n";
+
+  while (!errors.empty()) {
+    error("any " + to_string(errors.front()) + " inexistent");
+    errors.pop_front();
+  }
 
   cout << "Any:" << any << endl;
   int total = 0;
@@ -80,10 +91,15 @@ void mostrar11(const ResumEdats &dades) {
   }
 }
 
-void mostrar14(int any, int districte, int edat, int codiNacionalitat, const list<string> &dades) {
+void mostrar14(int any, int districte, int edat, int codiNacionalitat, const list<string> &dades, deque<int> &errors) {
   cout << "********************************************\n"
        << "* 14: Estudis any,districte, edat i nació *\n"
        << "********************************************\n";
+
+  while (!errors.empty()) {
+    error("any " + to_string(errors.front()) + " inexistent");
+    errors.pop_front();
+  }
 
   cout << "Any: " << any << "  Districte:" << districte << "  Edat:" << edat << "  Codi Nacionalitat:" << codiNacionalitat << endl;
   for (list<string>::const_iterator i = dades.begin(); i != dades.end(); i++) {

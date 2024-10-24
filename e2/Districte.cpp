@@ -10,7 +10,11 @@
 #include <set>
 #include <utility>
 
-Districte::Districte() { a_any = 0; }
+Districte::Districte() {
+  // Pre: cert; Post: incialitzacio a 0
+  a_any = 0;
+  suma_edats = 0;
+}
 
 void Districte::afegir(int any, int seccio, int codiNivellEstudis, const string &nivellEstudis, int anyNaixement, int codiNacionalitat, const string &nomNacionalitat) {
   // Pre: cert; Post: persona afegida a la ED
@@ -20,6 +24,7 @@ void Districte::afegir(int any, int seccio, int codiNivellEstudis, const string 
   if (pos == a_hab.end())
     pos = a_hab.emplace(seccio, list<Persona>()).first;
   pos->second.push_back(Persona(codiNivellEstudis, nivellEstudis, anyNaixement, codiNacionalitat, nomNacionalitat));
+  suma_edats += a_any - anyNaixement;
   a_resumEstudis.emplace(codiNivellEstudis, nivellEstudis);
   a_resumNacionalitats.emplace(codiNacionalitat, nomNacionalitat);
 }
@@ -34,15 +39,11 @@ long Districte::obtenirNumHabitants() const {
 }
 
 double Districte::obtenirEdatMitjana() const {
-  double mitjana = 0;
   long habitants = 0;
   for (map<int, list<Persona>>::const_iterator i = a_hab.begin(); i != a_hab.end(); i++) {
-    for (list<Persona>::const_iterator ii = i->second.begin(); ii != i->second.end(); ii++) {
-      mitjana += a_any - ii->obtenirAnyNaixement();
-    }
     habitants += i->second.size();
   }
-  return mitjana / habitants;
+  return suma_edats / habitants;
 }
 
 set<Estudi> Districte::resumEstudis() const {

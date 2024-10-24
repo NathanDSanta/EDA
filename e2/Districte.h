@@ -25,6 +25,7 @@ private:
   set<Estudi> a_resumEstudis;
   set<Nacionalitat> a_resumNacionalitats;
   int a_any;
+  double suma_edats;
 };
 
 #endif // DISTRICTE_H
