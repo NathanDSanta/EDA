@@ -90,7 +90,7 @@ map<int, int> Padro::nombreEstudisDistricte(int districte) const {
 list<string> Padro::estudisEdat(int any, int districte, int edat, int codiNacionalitat) const {
   // Pre: 1 <= districte <= 6; Post: retorna els diferents estudis dels habitats amb els parametres indicats;
   map<int, vector<Districte>>::const_iterator pos = a_districtes.find(any);
-  list<string> aux = list<string>(pos->second[districte].estudisEdatNacio(edat, codiNacionalitat));
+  list<string> aux = pos->second[districte].estudisEdatNacio(edat, codiNacionalitat);
   return aux;
 }
 
