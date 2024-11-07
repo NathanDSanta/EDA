@@ -5,4 +5,5 @@
 .executables
 *.csv
 *.txt
+doc*/
 !prova*.txt
