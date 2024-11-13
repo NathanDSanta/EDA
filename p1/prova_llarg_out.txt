@@ -1,0 +1,167 @@
+********************
+* 01: Llegir dades *
+********************
+Numero de linies: 1008794
+********************
+* 02: Existeix any *
+********************
+Any:2013
+Any existent
+********************
+* 02: Existeix any *
+********************
+Any:2020
+Any inexistent
+*******************************************
+* 04: Obtenir nombre d'habitants d'un any *
+*******************************************
+ERROR any 2020 inexistent
+ERROR any 4 inexistent
+Any:2022
+Districte 1   habitants:   7928
+Districte 2   habitants:  35455
+Districte 3   habitants:  39519
+Districte 4   habitants:   2355
+Districte 5   habitants:   7650
+Districte 6   habitants:   9635
+TOTAL : 102542
+*************************
+* 06: Resum per estudis *
+*************************
+2013  Estudis:TÍTOL SUP NO UNIVERSITARI -- SENSE ESTUDIS -- PRIMÀRIA INCOMPLETA -- NO APLICABLE MENOR 16 -- NI LLEGIR NI ESCRIURE -- LLICENCIAT O GRAU UNIVER. -- FORMACIÓ PROFESS 2ON GRAU -- FORMACIÓ PROFESS 1ER GRAU -- DOCTORAT I POST-GRAU -- DIPLOMAT ESCOLA UNIVERS. -- BATXILLER,FPII O SUPERIOR -- BATXILLER SUPERIOR, BUP -- BATX. ELEM., GRADUAT, ESO -- ARQUITECTE,ENGINYER TÈCNI -- ALTRES TÍTOLS DE GRAU MIG
+2014  Estudis:TÍTOL SUP NO UNIVERSITARI -- SENSE ESTUDIS -- PRIMÀRIA INCOMPLETA -- NO APLICABLE MENOR 16 -- NI LLEGIR NI ESCRIURE -- LLICENCIAT O GRAU UNIVER. -- FP 2ON GRAU O SUPERIOR -- FP 1ER GRAU O MITJÀ -- ESO, PRIMÀRIA O EQUIV. -- DOCTORAT I POST-GRAU -- DIPLOMAT ESCOLA UNIVERS. -- BATXILLER,FPII O SUPERIOR -- BATXILLER SUPERIOR, BUP -- ARQUITECTE,ENGINYER TÈCNI -- ALTRES TÍTOLS DE GRAU MIG
+2015  Estudis:TÍTOL SUP NO UNIVERSITARI -- SENSE ESTUDIS -- PRIMÀRIA INCOMPLETA -- NO APLICABLE MENOR 16 -- NI LLEGIR NI ESCRIURE -- LLICENCIAT O GRAU UNIVER. -- FP 2ON GRAU O SUPERIOR -- FP 1ER GRAU O MITJÀ -- ESO, PRIMÀRIA O EQUIV. -- DOCTORAT I POST-GRAU -- DIPLOMAT ESCOLA UNIVERS. -- BATXILLER,FPII O SUPERIOR -- BATXILLER SUPERIOR, BUP -- ARQUITECTE,ENGINYER TÈCNI -- ALTRES TÍTOLS DE GRAU MIG
+2016  Estudis:TÍTOL SUP NO UNIVERSITARI -- SENSE ESTUDIS -- PRIMÀRIA INCOMPLETA -- NO APLICABLE MENOR 16 -- NI LLEGIR NI ESCRIURE -- LLICENCIAT O GRAU UNIVER. -- FP 2ON GRAU O SUPERIOR -- FP 1ER GRAU O MITJÀ -- ESO, PRIMÀRIA O EQUIV. -- DOCTORAT I POST-GRAU -- DIPLOMAT ESCOLA UNIVERS. -- BATXILLER,FPII O SUPERIOR -- BATXILLER SUPERIOR, BUP -- ARQUITECTE,ENGINYER TÈCNI -- ALTRES TÍTOLS DE GRAU MIG
+2017  Estudis:TÍTOL SUP NO UNIVERSITARI -- SENSE ESTUDIS -- PRIMÀRIA INCOMPLETA -- NO APLICABLE MENOR 16 -- NI LLEGIR NI ESCRIURE -- LLICENCIAT O GRAU UNIVER. -- FP 2ON GRAU O SUPERIOR -- FP 1ER GRAU O MITJÀ -- ESO, PRIMÀRIA O EQUIV. -- DOCTORAT I POST-GRAU -- DIPLOMAT ESCOLA UNIVERS. -- BATXILLER,FPII O SUPERIOR -- BATXILLER SUPERIOR, BUP -- ARQUITECTE,ENGINYER TÈCNI -- ALTRES TÍTOLS DE GRAU MIG
+2018  Estudis:TÍTOL SUP NO UNIVERSITARI -- SENSE ESTUDIS -- PRIMÀRIA INCOMPLETA -- NO APLICABLE MENOR 16 -- NI LLEGIR NI ESCRIURE -- LLICENCIAT O GRAU UNIVER. -- FP 2ON GRAU O SUPERIOR -- FP 1ER GRAU O MITJÀ -- ESO, PRIMÀRIA O EQUIV. -- DOCTORAT I POST-GRAU -- DIPLOMAT ESCOLA UNIVERS. -- BATXILLER,FPII O SUPERIOR -- BATXILLER SUPERIOR, BUP -- ARQUITECTE,ENGINYER TÈCNI -- ALTRES TÍTOLS DE GRAU MIG
+2019  Estudis:TÍTOL SUP NO UNIVERSITARI -- SENSE ESTUDIS -- PRIMÀRIA INCOMPLETA -- NO APLICABLE MENOR 16 -- NI LLEGIR NI ESCRIURE -- LLICENCIAT O GRAU UNIVER. -- FP 2ON GRAU O SUPERIOR -- FP 1ER GRAU O MITJÀ -- ESO, PRIMÀRIA O EQUIV. -- DOCTORAT I POST-GRAU -- DIPLOMAT ESCOLA UNIVERS. -- BATXILLER,FPII O SUPERIOR -- BATXILLER SUPERIOR, BUP -- ARQUITECTE,ENGINYER TÈCNI -- ALTRES TÍTOLS DE GRAU MIG
+2021  Estudis:TÍTOL SUP NO UNIVERSITARI -- SENSE ESTUDIS -- PRIMÀRIA INCOMPLETA -- NO APLICABLE MENOR 16 -- NI LLEGIR NI ESCRIURE -- LLICENCIAT O GRAU UNIVER. -- FP 2ON GRAU O SUPERIOR -- FP 1ER GRAU O MITJÀ -- ESO, PRIMÀRIA O EQUIV. -- DOCTORAT I POST-GRAU -- DIPLOMAT ESCOLA UNIVERS. -- BATXILLER,FPII O SUPERIOR -- BATXILLER SUPERIOR, BUP -- ARQUITECTE,ENGINYER TÈCNI -- ALTRES TÍTOLS DE GRAU MIG
+2022  Estudis:TÍTOL SUP NO UNIVERSITARI -- SENSE ESTUDIS -- PRIMÀRIA INCOMPLETA -- NO APLICABLE MENOR 16 -- NI LLEGIR NI ESCRIURE -- LLICENCIAT O GRAU UNIVER. -- FP 2ON GRAU O SUPERIOR -- FP 1ER GRAU O MITJÀ -- ESO, PRIMÀRIA O EQUIV. -- DOCTORAT I POST-GRAU -- DIPLOMAT ESCOLA UNIVERS. -- BATXILLER,FPII O SUPERIOR -- BATXILLER SUPERIOR, BUP -- ARQUITECTE,ENGINYER TÈCNI -- ALTRES TÍTOLS DE GRAU MIG
+2023  Estudis:TÍTOL SUP NO UNIVERSITARI -- SENSE ESTUDIS -- PRIMÀRIA INCOMPLETA -- NO APLICABLE MENOR 16 -- NI LLEGIR NI ESCRIURE -- LLICENCIAT O GRAU UNIVER. -- FP 2ON GRAU O SUPERIOR -- FP 1ER GRAU O MITJÀ -- ESO, PRIMÀRIA O EQUIV. -- DOCTORAT I POST-GRAU -- DIPLOMAT ESCOLA UNIVERS. -- BATXILLER,FPII O SUPERIOR -- BATXILLER SUPERIOR, BUP -- ARQUITECTE,ENGINYER TÈCNI -- ALTRES TÍTOLS DE GRAU MIG
+**************************************
+* 07: Nombre d'estudis per districte *
+**************************************
+Districte:1
+Any 2013  Num Estudis:15
+Any 2014  Num Estudis:15
+Any 2015  Num Estudis:15
+Any 2016  Num Estudis:15
+Any 2017  Num Estudis:15
+Any 2018  Num Estudis:15
+Any 2019  Num Estudis:15
+Any 2021  Num Estudis:15
+Any 2022  Num Estudis:15
+Any 2023  Num Estudis:15
+**************************************
+* 07: Nombre d'estudis per districte *
+**************************************
+Districte:6
+Any 2013  Num Estudis:15
+Any 2014  Num Estudis:15
+Any 2015  Num Estudis:15
+Any 2016  Num Estudis:15
+Any 2017  Num Estudis:15
+Any 2018  Num Estudis:15
+Any 2019  Num Estudis:15
+Any 2021  Num Estudis:15
+Any 2022  Num Estudis:15
+Any 2023  Num Estudis:15
+*********************
+* 11: Resum d'edats *
+*********************
+2013: 
+       Carme, Vila-roja                Promig Edat:      37.84
+       Sant Ponc, Domeny, Taiala       Promig Edat:      38.50
+       Santa Eugenia, Mas Xirgu        Promig Edat:      38.60
+       Montjuic, Pont major            Promig Edat:      39.92
+       Eixample, Montilivi             Promig Edat:      40.01
+       Casc Antic                      Promig Edat:      40.50
+2014: 
+       Carme, Vila-roja                Promig Edat:      37.93
+       Santa Eugenia, Mas Xirgu        Promig Edat:      38.82
+       Sant Ponc, Domeny, Taiala       Promig Edat:      39.09
+       Montjuic, Pont major            Promig Edat:      40.05
+       Eixample, Montilivi             Promig Edat:      40.26
+       Casc Antic                      Promig Edat:      40.65
+2015: 
+       Carme, Vila-roja                Promig Edat:      38.08
+       Santa Eugenia, Mas Xirgu        Promig Edat:      38.98
+       Sant Ponc, Domeny, Taiala       Promig Edat:      39.42
+       Casc Antic                      Promig Edat:      39.99
+       Montjuic, Pont major            Promig Edat:      40.19
+       Eixample, Montilivi             Promig Edat:      40.30
+2016: 
+       Carme, Vila-roja                Promig Edat:      38.59
+       Santa Eugenia, Mas Xirgu        Promig Edat:      39.19
+       Sant Ponc, Domeny, Taiala       Promig Edat:      39.90
+       Montjuic, Pont major            Promig Edat:      40.26
+       Casc Antic                      Promig Edat:      40.36
+       Eixample, Montilivi             Promig Edat:      40.64
+2017: 
+       Carme, Vila-roja                Promig Edat:      38.32
+       Santa Eugenia, Mas Xirgu        Promig Edat:      39.21
+       Sant Ponc, Domeny, Taiala       Promig Edat:      40.13
+       Casc Antic                      Promig Edat:      40.13
+       Montjuic, Pont major            Promig Edat:      40.56
+       Eixample, Montilivi             Promig Edat:      40.69
+2018: 
+       Carme, Vila-roja                Promig Edat:      38.42
+       Santa Eugenia, Mas Xirgu        Promig Edat:      39.24
+       Casc Antic                      Promig Edat:      39.99
+       Sant Ponc, Domeny, Taiala       Promig Edat:      40.28
+       Montjuic, Pont major            Promig Edat:      40.63
+       Eixample, Montilivi             Promig Edat:      40.92
+2019: 
+       Carme, Vila-roja                Promig Edat:      38.62
+       Casc Antic                      Promig Edat:      39.23
+       Santa Eugenia, Mas Xirgu        Promig Edat:      39.33
+       Sant Ponc, Domeny, Taiala       Promig Edat:      40.50
+       Montjuic, Pont major            Promig Edat:      40.98
+       Eixample, Montilivi             Promig Edat:      41.21
+2021: 
+       Carme, Vila-roja                Promig Edat:      39.74
+       Santa Eugenia, Mas Xirgu        Promig Edat:      40.65
+       Casc Antic                      Promig Edat:      41.68
+       Sant Ponc, Domeny, Taiala       Promig Edat:      42.26
+       Montjuic, Pont major            Promig Edat:      42.42
+       Eixample, Montilivi             Promig Edat:      42.54
+2022: 
+       Carme, Vila-roja                Promig Edat:      39.79
+       Santa Eugenia, Mas Xirgu        Promig Edat:      40.90
+       Casc Antic                      Promig Edat:      41.46
+       Sant Ponc, Domeny, Taiala       Promig Edat:      42.54
+       Eixample, Montilivi             Promig Edat:      42.78
+       Montjuic, Pont major            Promig Edat:      42.83
+2023: 
+       Carme, Vila-roja                Promig Edat:      39.73
+       Casc Antic                      Promig Edat:      40.74
+       Santa Eugenia, Mas Xirgu        Promig Edat:      40.97
+       Sant Ponc, Domeny, Taiala       Promig Edat:      42.58
+       Montjuic, Pont major            Promig Edat:      42.81
+       Eixample, Montilivi             Promig Edat:      42.90
+********************************************
+* 14: Estudis any,districte, edat i nació *
+********************************************
+ERROR any 2020 inexistent
+Any: 2021  Districte:1  Edat:20  Codi Nacionalitat:108
+BATXILLER SUPERIOR, BUP
+ESO, PRIMÀRIA O EQUIV.
+FP 1ER GRAU O MITJÀ
+NO APLICABLE MENOR 16
+PRIMÀRIA INCOMPLETA
+SENSE ESTUDIS
+********************************************
+* 14: Estudis any,districte, edat i nació *
+********************************************
+Any: 2014  Districte:2  Edat:30  Codi Nacionalitat:108
+ALTRES TÍTOLS DE GRAU MIG
+ARQUITECTE,ENGINYER TÈCNI
+BATXILLER SUPERIOR, BUP
+DIPLOMAT ESCOLA UNIVERS.
+DOCTORAT I POST-GRAU
+ESO, PRIMÀRIA O EQUIV.
+FP 1ER GRAU O MITJÀ
+FP 2ON GRAU O SUPERIOR
+LLICENCIAT O GRAU UNIVER.
+PRIMÀRIA INCOMPLETA
+TÍTOL SUP NO UNIVERSITARI

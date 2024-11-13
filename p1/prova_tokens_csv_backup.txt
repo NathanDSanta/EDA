@@ -1,0 +1,27 @@
+#include "eines.h"
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int main() {
+  ifstream f;
+  string linia;
+  vector<string> items;
+  string fitxer = "prova_tokens.csv";
+  f.open(fitxer);
+  if (!f.fail()) {
+    getline(f, linia);
+    while (!f.eof()) {
+      items = tokens(linia, ',', true);
+      cout << linia << endl;
+      for (auto i : items) {
+        cout << "\t[" << i << "]" << endl;
+      }
+      getline(f, linia);
+    }
+  }
+  return 0;
+}

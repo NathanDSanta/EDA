@@ -52,8 +52,7 @@ class GrafEtiquetat {
 	 @pre v1 i v2 valid
 	*/
 	bool existeixAresta(int v1, int v2) const;
-	// Torna l'etiqueta d'una aresta.
-	// si no hi ha aresta entre v1 i v2, llença excepció
+
 	/**
 	 @return Etiqueta de la aresta {v1,v2}
 	 @param v1 enter que determina l'origen de l'aresta
