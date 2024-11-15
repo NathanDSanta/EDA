@@ -1,13 +1,14 @@
 #ifndef ANY_H
 #define ANY_H
 
-#include "Districte.h"
 #include <list>
 #include <map>
 #include <set>
 #include <string>
 #include <utility>
 #include <vector>
+
+#include "Districte.h"
 using namespace std;
 class Any {
 public:
@@ -28,8 +29,8 @@ public:
 
   static const int N_DISTRICTES = 6;
   static const string DISTRICTES[N_DISTRICTES + 1];
-private:
 
+private:
   int a_any;
   vector<Districte> a_districtes;
 };

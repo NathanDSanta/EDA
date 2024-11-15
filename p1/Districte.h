@@ -12,7 +12,7 @@
 #include "Seccio.h"
 
 class Districte {
- public:
+public:
   Districte();
   void afegir(int any, int seccio, int codiNivellEstudis, const string &nivellEstudis, int anyNaixement, int codiNacionalitat, const string &nomNacionalitat);
   long obtenirNumHabitants() const;
@@ -25,7 +25,7 @@ class Districte {
   long obtenirNumHabitantsEdatEntre(int any, int edat1, int edat2) const;
   list<string> estudisEdatNacio(int any, int edat, int nacionalitat) const;
 
- private:
+private:
   map<int, Seccio> a_seccions;
   set<Estudi> a_resumEstudis;
   set<Nacionalitat> a_resumNacionalitats;
@@ -34,4 +34,4 @@ class Districte {
   double sumaPromigEstudis;
 };
 
-#endif  // DISTRICTE_H
+#endif // DISTRICTE_H

@@ -4,6 +4,6 @@
 #include <string>
 using namespace std;
 
-class ResumNacionalitats : public map<int, map<long, string>>{};
+class ResumNacionalitats : public map<int, map<long, string>> {};
 
 #endif // !RESUMNACIONALITATS_H

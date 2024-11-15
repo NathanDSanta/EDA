@@ -6,6 +6,6 @@
 #include <vector>
 using namespace std;
 
-class ResumNivellEstudis : public map<int, map<int, pair<double, int>>>{};
+class ResumNivellEstudis : public map<int, map<int, pair<double, int>>> {};
 
 #endif // !RESUMNIVELLESTUDIS_H

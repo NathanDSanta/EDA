@@ -1,15 +1,16 @@
 #ifndef PADRO_H
 #define PADRO_H
 
+#include <list>
+#include <map>
+#include <string>
+#include <vector>
+
 #include "Any.h"
 #include "ResumEdats.h"
 #include "ResumEstudis.h"
 #include "ResumNacionalitats.h"
 #include "ResumNivellEstudis.h"
-#include <list>
-#include <map>
-#include <string>
-#include <vector>
 
 using namespace std;
 

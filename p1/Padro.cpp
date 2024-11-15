@@ -91,9 +91,7 @@ vector<long> Padro::obtenirNumHabitantsPerDistricte(int any) const {
   return habitantsPerDistricte;
 }
 
-map<int, long> Padro::obtenirNumHabitantsPerSeccio(int any, int districte) const { 
-  return a_anys.find(any)->second.obtenirNumHabitantsPerSeccio(districte);
-}
+map<int, long> Padro::obtenirNumHabitantsPerSeccio(int any, int districte) const { return a_anys.find(any)->second.obtenirNumHabitantsPerSeccio(districte); }
 
 ResumEstudis Padro::resumEstudis() const {
   // Pre: cert; Post: retorna un Resum que conte, tots els nivells d'estudis
@@ -107,7 +105,8 @@ ResumEstudis Padro::resumEstudis() const {
 }
 
 map<int, int> Padro::nombreEstudisDistricte(int districte) const {
-  // Pre: 1 <= districte <= 6; Post: retorna un map el districte amb el nombre d'estudis
+  // Pre: 1 <= districte <= 6; Post: retorna un map el districte amb el nombre
+  // d'estudis
   map<int, int> aux;
 
   for (map<int, Any>::const_iterator i = a_anys.begin(); i != a_anys.end(); i++)
@@ -116,7 +115,7 @@ map<int, int> Padro::nombreEstudisDistricte(int districte) const {
   return aux;
 }
 
-ResumNivellEstudis Padro::resumNivellEstudis() const{
+ResumNivellEstudis Padro::resumNivellEstudis() const {
   ResumNivellEstudis resultat;
   for (map<int, Any>::const_iterator i = a_anys.begin(); i != a_anys.end(); i++) {
     resultat.emplace(i->first, i->second.resumNivellEstudis());
@@ -124,15 +123,15 @@ ResumNivellEstudis Padro::resumNivellEstudis() const{
   return resultat;
 }
 
-ResumNacionalitats Padro::resumNacionalitats() const{
+ResumNacionalitats Padro::resumNacionalitats() const {
   ResumNacionalitats resultat;
-  for (map<int,Any>::const_iterator i = a_anys.begin(); i != a_anys.end(); i++) {
+  for (map<int, Any>::const_iterator i = a_anys.begin(); i != a_anys.end(); i++) {
     resultat.emplace(i->first, i->second.resumNacionalitats());
   }
   return resultat;
 }
 
-map<int, string> Padro::movimentsComunitat(int codiNacionalitat) const{
+map<int, string> Padro::movimentsComunitat(int codiNacionalitat) const {
   map<int, string> resultat;
   for (map<int, Any>::const_iterator i = a_anys.begin(); i != a_anys.end(); i++) {
     resultat.emplace(i->first, i->second.movimentsComunitat(codiNacionalitat));
@@ -141,7 +140,8 @@ map<int, string> Padro::movimentsComunitat(int codiNacionalitat) const{
 }
 
 ResumEdats Padro::resumEdat() const {
-  // Pre: cert; Post: retorna per cada any, tots els districtes amb la seva edat promig
+  // Pre: cert; Post: retorna per cada any, tots els districtes amb la seva edat
+  // promig
   ResumEdats res;
 
   for (map<int, Any>::const_iterator i = a_anys.begin(); i != a_anys.end(); i++) {
@@ -151,15 +151,15 @@ ResumEdats Padro::resumEdat() const {
   return res;
 }
 
-map<int, string> Padro::movimentVells() const{
-  map<int,string> resultat;
+map<int, string> Padro::movimentVells() const {
+  map<int, string> resultat;
   for (map<int, Any>::const_iterator i = a_anys.begin(); i != a_anys.end(); i++) {
     resultat.emplace(i->first, i->second.movimentVells());
   }
   return resultat;
 }
 
-pair<string,long> Padro::mesJoves(int anyInicial, int anyFinal) const {
+pair<string, long> Padro::mesJoves(int anyInicial, int anyFinal) const {
   vector<long> final = a_anys.find(anyFinal)->second.poblacioJovesDistricte();
   vector<long> inici = a_anys.find(anyInicial)->second.poblacioJovesDistricte();
 
@@ -167,8 +167,8 @@ pair<string,long> Padro::mesJoves(int anyInicial, int anyFinal) const {
   long v_max = final[1] - inici[1];
   for (int i = 2; i < final.size(); i++) {
     long new_max = final[i] - inici[i];
-    if(new_max > v_max) { 
-      max = i; 
+    if (new_max > v_max) {
+      max = i;
       v_max = new_max;
     }
   }
@@ -177,7 +177,8 @@ pair<string,long> Padro::mesJoves(int anyInicial, int anyFinal) const {
 }
 
 list<string> Padro::estudisEdat(int any, int districte, int edat, int codiNacionalitat) const {
-  // Pre: 1 <= districte <= 6; Post: retorna els diferents estudis dels habitats amb els parametres indicats;
+  // Pre: 1 <= districte <= 6; Post: retorna els diferents estudis dels habitats
+  // amb els parametres indicats;
   map<int, Any>::const_iterator pos = a_anys.find(any);
   list<string> aux = pos->second.estudisEdatNacio(districte, edat, codiNacionalitat);
   return aux;

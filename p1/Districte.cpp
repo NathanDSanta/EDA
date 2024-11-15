@@ -27,9 +27,9 @@ void Districte::afegir(int any, int seccio, int codiNivellEstudis, const string 
   sumaPromigEstudis += codiNivellEstudis;
   a_resumEstudis.emplace(codiNivellEstudis, nivellEstudis);
   a_resumNacionalitats.emplace(codiNacionalitat, nomNacionalitat);
-  map<int,long>::iterator posicio = a_resumHabitantsNacio.find(codiNacionalitat);
+  map<int, long>::iterator posicio = a_resumHabitantsNacio.find(codiNacionalitat);
   if (posicio != a_resumHabitantsNacio.end()) {
-    posicio->second++; 
+    posicio->second++;
   } else {
     a_resumHabitantsNacio.emplace(codiNacionalitat, 1);
   }
@@ -44,7 +44,7 @@ long Districte::obtenirNumHabitants() const {
   return total;
 }
 
-map<int, long> Districte::obtenirNumHabitantsPerSeccio() const{
+map<int, long> Districte::obtenirNumHabitantsPerSeccio() const {
   map<int, long> resultat;
   for (map<int, Seccio>::const_iterator i = a_seccions.begin(); i != a_seccions.end(); i++) {
     resultat.emplace(i->first, i->second.obtenirNumHabitants());
@@ -52,18 +52,14 @@ map<int, long> Districte::obtenirNumHabitantsPerSeccio() const{
   return resultat;
 }
 
-double Districte::obtenirPromigNivellEstudis() const{
-  return sumaPromigEstudis / obtenirNumHabitants();
-}
+double Districte::obtenirPromigNivellEstudis() const { return sumaPromigEstudis / obtenirNumHabitants(); }
 
 set<Nacionalitat> Districte::resumNacionalitats() const {
   // Pre: cert; Post: retorna les diferents nacionalitats del Districte
   return a_resumNacionalitats;
 }
 
-long Districte::obtenirNumHabitantsNacio(int codiNacionalitat) const{
-  return a_resumHabitantsNacio.find(codiNacionalitat)->second;
-}
+long Districte::obtenirNumHabitantsNacio(int codiNacionalitat) const { return a_resumHabitantsNacio.find(codiNacionalitat)->second; }
 
 double Districte::obtenirEdatMitjana() const {
   long habitants = obtenirNumHabitants();
@@ -75,7 +71,7 @@ set<Estudi> Districte::resumEstudis() const {
   return a_resumEstudis;
 }
 
-long Districte::obtenirNumHabitantsEdatEntre(int any, int edat1, int edat2) const{
+long Districte::obtenirNumHabitantsEdatEntre(int any, int edat1, int edat2) const {
   long total = 0;
   for (map<int, Seccio>::const_iterator i = a_seccions.begin(); i != a_seccions.end(); i++) {
     total += i->second.obtenirNumHabitantsEdatEntre(any, edat1, edat2);

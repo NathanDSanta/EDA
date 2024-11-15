@@ -26,10 +26,10 @@ void mostrar6(const ResumEstudis &dades);
 void mostrar7(int districte, const map<int, int> &dades);
 void mostrar8(const ResumNivellEstudis &dades);
 void mostrar9(const ResumNacionalitats &dades);
-void mostrar10(const map<int, string>& dades, const int& nacionalitat);
+void mostrar10(const map<int, string> &dades, const int &nacionalitat);
 void mostrar11(const ResumEdats &dades);
 void mostrar12(const map<int, string> &dades);
-void mostrar13(const pair<string, long>&dades, const int& anyInici, const int& anyFinal);
+void mostrar13(const pair<string, long> &dades, const int &anyInici, const int &anyFinal);
 void mostrar14(int any, int districte, int edat, int codiNacionalitat, const list<string> &dades);
 
 #endif // !MOSTRA_H

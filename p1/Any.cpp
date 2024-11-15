@@ -36,7 +36,7 @@ map<double, string> Any::obtenirEdatsMitjanes() const {
   return aux;
 }
 
-long Any::obtenirNumHabitants() const{
+long Any::obtenirNumHabitants() const {
   long habitants = 0;
   vector<long> habitantsPerDistricte = obtenirNumHabitantsPerDistricte();
   for (int i = 1; i <= N_DISTRICTES; i++) {
@@ -55,23 +55,21 @@ vector<long> Any::obtenirNumHabitantsPerDistricte() const {
   return habitantsPerDistricte;
 }
 
-map<int, long> Any::obtenirNumHabitantsPerSeccio(int districte) const{
-  return a_districtes[districte].obtenirNumHabitantsPerSeccio();
-}
+map<int, long> Any::obtenirNumHabitantsPerSeccio(int districte) const { return a_districtes[districte].obtenirNumHabitantsPerSeccio(); }
 
-map<int, pair<double, int>> Any::resumNivellEstudis() const{
-  map<int,pair<double,int>> resultat;
+map<int, pair<double, int>> Any::resumNivellEstudis() const {
+  map<int, pair<double, int>> resultat;
   double max = 0;
   int districte_max = 0;
   double min = numeric_limits<double>::max();
   int districte_min = 0;
-  for(int i = 1; i <= N_DISTRICTES; i++){
+  for (int i = 1; i <= N_DISTRICTES; i++) {
     double promig = a_districtes[i].obtenirPromigNivellEstudis();
-    resultat.emplace(i,make_pair(promig, 0));
-    if(promig > max){
+    resultat.emplace(i, make_pair(promig, 0));
+    if (promig > max) {
       max = promig;
       districte_max = i;
-    } else if(promig < min){
+    } else if (promig < min) {
       min = promig;
       districte_min = i;
     }
@@ -87,27 +85,27 @@ map<long, string> Any::resumNacionalitats() const {
     set<Nacionalitat> nacionalitats = a_districtes[i].resumNacionalitats();
     for (set<Nacionalitat>::const_iterator j = nacionalitats.begin(); j != nacionalitats.end(); j++) {
       map<string, long>::iterator pos = habitantsNacionalitat.find(j->obtenirNom());
-      if(pos != habitantsNacionalitat.end()){
+      if (pos != habitantsNacionalitat.end()) {
         pos->second += a_districtes[i].obtenirNumHabitantsNacio(j->obtenirId());
       } else {
-        habitantsNacionalitat.emplace(j->obtenirNom() + " (" + to_string(j->obtenirId()) + ")",a_districtes[i].obtenirNumHabitantsNacio(j->obtenirId()));
+        habitantsNacionalitat.emplace(j->obtenirNom() + " (" + to_string(j->obtenirId()) + ")", a_districtes[i].obtenirNumHabitantsNacio(j->obtenirId()));
       }
     }
   }
 
   map<long, string> resultat;
   for (map<string, long>::const_iterator i = habitantsNacionalitat.begin(); i != habitantsNacionalitat.end(); i++) {
-    resultat.emplace(i->second, i->first); 
+    resultat.emplace(i->second, i->first);
   }
   return resultat;
 }
 
-string Any::movimentsComunitat(int codiNacionalitat) const{
+string Any::movimentsComunitat(int codiNacionalitat) const {
   int max = 1;
   long v_max = a_districtes[1].obtenirNumHabitantsNacio(codiNacionalitat);
-  for (int i = 2; i <= N_DISTRICTES ; i++) {
+  for (int i = 2; i <= N_DISTRICTES; i++) {
     long new_max = a_districtes[i].obtenirNumHabitantsNacio(codiNacionalitat);
-    if(new_max > v_max){
+    if (new_max > v_max) {
       max = i;
       v_max = new_max;
     }
@@ -128,7 +126,7 @@ set<Estudi> Any::resumEstudis(int districte) const {
   return res;
 }
 
-string Any::movimentVells() const{
+string Any::movimentVells() const {
   int max = 1;
   long v_max = a_districtes[1].obtenirNumHabitantsEdatEntre(a_any, 31, numeric_limits<int>::max());
   for (int i = 2; i <= N_DISTRICTES; i++) {
@@ -141,7 +139,7 @@ string Any::movimentVells() const{
   return DISTRICTES[max];
 }
 
-vector<long> Any::poblacioJovesDistricte() const{
+vector<long> Any::poblacioJovesDistricte() const {
   vector<long> resultat;
   for (int i = 1; i <= N_DISTRICTES; i++) {
     resultat[i] = a_districtes[i].obtenirNumHabitantsEdatEntre(a_any, 20, 30);
@@ -149,7 +147,4 @@ vector<long> Any::poblacioJovesDistricte() const{
   return resultat;
 }
 
-list<string> Any::estudisEdatNacio(int districte, int edat, int codiNacionalitat) const {
-  return a_districtes[districte].estudisEdatNacio(a_any, edat, codiNacionalitat);
-}
-
+list<string> Any::estudisEdatNacio(int districte, int edat, int codiNacionalitat) const { return a_districtes[districte].estudisEdatNacio(a_any, edat, codiNacionalitat); }
