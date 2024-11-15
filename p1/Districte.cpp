@@ -10,11 +10,11 @@
 
 #include "Estudi.h"
 #include "Nacionalitat.h"
-#include "Persona.h"
 
 Districte::Districte() {
   // Pre: cert; Post: incialitzacio a 0
-  suma_edats = 0;
+  sumaEdats = 0;
+  sumaPromigEstudis = 0;
 }
 
 void Districte::afegir(int any, int seccio, int codiNivellEstudis, const string &nivellEstudis, int anyNaixement, int codiNacionalitat, const string &nomNacionalitat) {
@@ -23,9 +23,16 @@ void Districte::afegir(int any, int seccio, int codiNivellEstudis, const string 
   if (pos == a_seccions.end())
     pos = a_seccions.emplace(seccio, Seccio()).first;
   pos->second.afegir(codiNivellEstudis, nivellEstudis, anyNaixement, codiNacionalitat, nomNacionalitat);
-  suma_edats += any - anyNaixement;
+  sumaEdats += any - anyNaixement;
+  sumaPromigEstudis += codiNivellEstudis;
   a_resumEstudis.emplace(codiNivellEstudis, nivellEstudis);
   a_resumNacionalitats.emplace(codiNacionalitat, nomNacionalitat);
+  map<int,long>::iterator posicio = a_resumHabitantsNacio.find(codiNacionalitat);
+  if (posicio != a_resumHabitantsNacio.end()) {
+    posicio->second++; 
+  } else {
+    a_resumHabitantsNacio.emplace(codiNacionalitat, 1);
+  }
 }
 
 long Districte::obtenirNumHabitants() const {
@@ -37,9 +44,30 @@ long Districte::obtenirNumHabitants() const {
   return total;
 }
 
+map<int, long> Districte::obtenirNumHabitantsPerSeccio() const{
+  map<int, long> resultat;
+  for (map<int, Seccio>::const_iterator i = a_seccions.begin(); i != a_seccions.end(); i++) {
+    resultat.emplace(i->first, i->second.obtenirNumHabitants());
+  }
+  return resultat;
+}
+
+double Districte::obtenirPromigNivellEstudis() const{
+  return sumaPromigEstudis / obtenirNumHabitants();
+}
+
+set<Nacionalitat> Districte::resumNacionalitats() const {
+  // Pre: cert; Post: retorna les diferents nacionalitats del Districte
+  return a_resumNacionalitats;
+}
+
+long Districte::obtenirNumHabitantsNacio(int codiNacionalitat) const{
+  return a_resumHabitantsNacio.find(codiNacionalitat)->second;
+}
+
 double Districte::obtenirEdatMitjana() const {
   long habitants = obtenirNumHabitants();
-  return suma_edats / habitants;
+  return sumaEdats / habitants;
 }
 
 set<Estudi> Districte::resumEstudis() const {
@@ -47,9 +75,12 @@ set<Estudi> Districte::resumEstudis() const {
   return a_resumEstudis;
 }
 
-set<Nacionalitat> Districte::resumNacionalitats() const {
-  // Pre: cert; Post: retorna les diferents nacionalitats del Districte
-  return a_resumNacionalitats;
+long Districte::obtenirNumHabitantsEdatEntre(int any, int edat1, int edat2) const{
+  long total = 0;
+  for (map<int, Seccio>::const_iterator i = a_seccions.begin(); i != a_seccions.end(); i++) {
+    total += i->second.obtenirNumHabitantsEdatEntre(any, edat1, edat2);
+  }
+  return total;
 }
 
 list<string> Districte::estudisEdatNacio(int any, int edat, int nacionalitat) const {

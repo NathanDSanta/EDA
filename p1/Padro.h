@@ -5,6 +5,7 @@
 #include "ResumEdats.h"
 #include "ResumEstudis.h"
 #include "ResumNacionalitats.h"
+#include "ResumNivellEstudis.h"
 #include <list>
 #include <map>
 #include <string>
@@ -23,8 +24,8 @@ public:
   map<int, long> obtenirNumHabitantsPerSeccio(int any, int districte) const;
   ResumEstudis resumEstudis() const;
   map<int, int> nombreEstudisDistricte(int districte) const;
-  // ResumNivellEstudis resumNivellEstudis() const;
-  // ResumNacionalitats resumNacionalitats() const;
+  ResumNivellEstudis resumNivellEstudis() const;
+  ResumNacionalitats resumNacionalitats() const;
   map<int, string> movimentsComunitat(int codiNacionalitat) const;
   ResumEdats resumEdat() const;
   map<int, string> movimentVells() const;

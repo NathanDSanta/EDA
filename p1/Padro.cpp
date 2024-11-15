@@ -1,5 +1,5 @@
 #include "Padro.h"
-#include "eines.h"
+
 #include <fstream>
 #include <ios>
 #include <limits>
@@ -9,6 +9,11 @@
 #include <string>
 #include <utility>
 #include <vector>
+
+#include "Any.h"
+#include "ResumNacionalitats.h"
+#include "ResumNivellEstudis.h"
+#include "eines.h"
 
 int Padro::llegirDades(const string &path) {
   // Pre: path = ruta de l'arxiu csv; Post: padro amb les dades llegides;
@@ -65,15 +70,40 @@ bool Padro::existeixAny(int any) const {
   return existeix;
 }
 
+map<int, long> Padro::obtenirNumHabitantsPerAny() const {
+  map<int, long> aux;
+
+  for (map<int, Any>::const_iterator i = a_anys.begin(); i != a_anys.end(); i++) {
+    aux.emplace(i->first, i->second.obtenirNumHabitants());
+  }
+
+  return aux;
+}
+
 vector<long> Padro::obtenirNumHabitantsPerDistricte(int any) const {
   // Pre: cert; Post: retorna un vector amb el numero d'habitants per districte
   vector<long> habitantsPerDistricte;
   map<int, Any>::const_iterator pos = a_anys.find(any);
 
   if (pos != a_anys.end())
-    habitantsPerDistricte = pos->second.obtenirNumHabitants();
+    habitantsPerDistricte = pos->second.obtenirNumHabitantsPerDistricte();
 
   return habitantsPerDistricte;
+}
+
+map<int, long> Padro::obtenirNumHabitantsPerSeccio(int any, int districte) const { 
+  return a_anys.find(any)->second.obtenirNumHabitantsPerSeccio(districte);
+}
+
+ResumEstudis Padro::resumEstudis() const {
+  // Pre: cert; Post: retorna un Resum que conte, tots els nivells d'estudis
+  ResumEstudis res;
+
+  for (map<int, Any>::const_iterator i = a_anys.begin(); i != a_anys.end(); i++) {
+    res.emplace(i->first, i->second.resumEstudis());
+  }
+
+  return res;
 }
 
 map<int, int> Padro::nombreEstudisDistricte(int districte) const {
@@ -86,27 +116,28 @@ map<int, int> Padro::nombreEstudisDistricte(int districte) const {
   return aux;
 }
 
-list<string> Padro::estudisEdat(int any, int districte, int edat, int codiNacionalitat) const {
-  // Pre: 1 <= districte <= 6; Post: retorna els diferents estudis dels habitats amb els parametres indicats;
-  map<int, Any>::const_iterator pos = a_anys.find(any);
-  list<string> aux = pos->second.estudisEdatNacio(districte, edat, codiNacionalitat);
-  return aux;
+ResumNivellEstudis Padro::resumNivellEstudis() const{
+  ResumNivellEstudis resultat;
+  for (map<int, Any>::const_iterator i = a_anys.begin(); i != a_anys.end(); i++) {
+    resultat.emplace(i->first, i->second.resumNivellEstudis());
+  }
+  return resultat;
 }
 
-ResumEstudis Padro::resumEstudis() const {
-  // Pre: cert; Post: retorna un Resum que conte, tots els nivells d'estudis
-  ResumEstudis res;
-
-  for (map<int, Any>::const_iterator i = a_anys.begin(); i != a_anys.end(); i++) {
-    // set<Estudi> total;
-    //
-    // for (vector<Districte>::const_iterator j = i->second.begin(); j != i->second.end(); j++)
-    // total.merge(j->resumEstudis());
-    //
-    res.emplace(i->first, i->second.resumEstudis());
+ResumNacionalitats Padro::resumNacionalitats() const{
+  ResumNacionalitats resultat;
+  for (map<int,Any>::const_iterator i = a_anys.begin(); i != a_anys.end(); i++) {
+    resultat.emplace(i->first, i->second.resumNacionalitats());
   }
+  return resultat;
+}
 
-  return res;
+map<int, string> Padro::movimentsComunitat(int codiNacionalitat) const{
+  map<int, string> resultat;
+  for (map<int, Any>::const_iterator i = a_anys.begin(); i != a_anys.end(); i++) {
+    resultat.emplace(i->first, i->second.movimentsComunitat(codiNacionalitat));
+  }
+  return resultat;
 }
 
 ResumEdats Padro::resumEdat() const {
@@ -114,14 +145,42 @@ ResumEdats Padro::resumEdat() const {
   ResumEdats res;
 
   for (map<int, Any>::const_iterator i = a_anys.begin(); i != a_anys.end(); i++) {
-    // map<double, string> total;
-    //
-    // for (int ii = 1; ii < NUM_DISTRICTES + 1; ii++)
-    // total.emplace(i->second[ii].obtenirEdatMitjana(), DISTRICTES[ii]);
     res.emplace(i->first, i->second.obtenirEdatsMitjanes());
   }
 
   return res;
+}
+
+map<int, string> Padro::movimentVells() const{
+  map<int,string> resultat;
+  for (map<int, Any>::const_iterator i = a_anys.begin(); i != a_anys.end(); i++) {
+    resultat.emplace(i->first, i->second.movimentVells());
+  }
+  return resultat;
+}
+
+pair<string,long> Padro::mesJoves(int anyInicial, int anyFinal) const {
+  vector<long> final = a_anys.find(anyFinal)->second.poblacioJovesDistricte();
+  vector<long> inici = a_anys.find(anyInicial)->second.poblacioJovesDistricte();
+
+  int max = 1;
+  long v_max = final[1] - inici[1];
+  for (int i = 2; i < final.size(); i++) {
+    long new_max = final[i] - inici[i];
+    if(new_max > v_max) { 
+      max = i; 
+      v_max = new_max;
+    }
+  }
+
+  return make_pair(Any::DISTRICTES[max], v_max);
+}
+
+list<string> Padro::estudisEdat(int any, int districte, int edat, int codiNacionalitat) const {
+  // Pre: 1 <= districte <= 6; Post: retorna els diferents estudis dels habitats amb els parametres indicats;
+  map<int, Any>::const_iterator pos = a_anys.find(any);
+  list<string> aux = pos->second.estudisEdatNacio(districte, edat, codiNacionalitat);
+  return aux;
 }
 
 int Padro::stringToInt(string s) const {

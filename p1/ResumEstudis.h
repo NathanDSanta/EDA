@@ -4,4 +4,6 @@
 #include <set>
 #include <string>
 
-class ResumEstudis : public std::map<int, std::set<Estudi>> {};
+using namespace std;
+
+class ResumEstudis : public map<int, set<Estudi>> {};

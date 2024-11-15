@@ -2,10 +2,16 @@
 // Arxiu amb les funcions de mostra del exercici 2
 // format ==> 'mostra$()' on $ es el numero de l'opcio
 #include "mostra.h"
+
 #include <iomanip>
 #include <iostream>
 #include <list>
+#include <map>
 #include <string>
+#include <utility>
+
+#include "ResumNacionalitats.h"
+#include "ResumNivellEstudis.h"
 
 void error(const string &missatge) { cout << "ERROR " << missatge << endl; }
 
@@ -21,10 +27,20 @@ void banner(const int &opcio) {
          << "* 02: Existeix any *\n"
          << "********************\n";
     break;
+  case 3:
+    cout << "**********************************\n"
+         << "* 03: Obtenir nombre d'habitants *\n"
+         << "**********************************\n";
+    break;
   case 4:
     cout << "*******************************************\n"
          << "* 04: Obtenir nombre d'habitants d'un any *\n"
          << "*******************************************\n";
+    break;
+  case 5:
+    cout << "*******************************************************\n"
+         << "* 05: Obtenir nobmre d'habitants d'un any i districte *\n"
+         << "*******************************************************\n";
     break;
   case 6:
     cout << "*************************\n"
@@ -36,10 +52,35 @@ void banner(const int &opcio) {
          << "* 07: Nombre d'estudis per districte *\n"
          << "**************************************\n";
     break;
+  case 8:
+    cout << "******************************\n"
+         << "* 08: Resum nivell d'estudis *\n"
+         << "******************************\n";
+    break;
+  case 9:
+    cout << "******************************\n"
+         << "* 09: Resum de nacionalitats *\n"
+         << "******************************\n";
+    break;
+  case 10:
+    cout << "*********************************\n"
+         << "* 10: Moviments d'una comunitat *\n"
+         << "*********************************\n";
+    break;
   case 11:
     cout << "*********************\n"
          << "* 11: Resum d'edats *\n"
          << "*********************\n";
+    break;
+  case 12:
+    cout << "****************************\n"
+         << "* 12: Moviments dels vells *\n"
+         << "****************************\n";
+    break;
+  case 13:
+    cout << "*****************\n"
+         << "* 13: Més joves *\n"
+         << "*****************\n";
     break;
   case 14:
     cout << "********************************************\n"
@@ -59,6 +100,16 @@ void mostrar2(const int &any, const bool &existeix) {
   cout << "existent\n";
 }
 
+void mostrar3(const map<int, long> &dades) {
+  double promig = 0;
+  long total = 0;
+  for (map<int, long>::const_iterator i = dades.begin(); i != dades.end(); i++) {
+    cout << i->first << "   " << "habitants:" << setw(7) << right << i->second << endl;
+    promig += i->second;
+  }
+  cout << "PROMIG : " << promig / dades.size() << endl;
+}
+
 void mostrar4(const int &any, const vector<long> &dades) {
   cout << "Any:" << any << endl;
   int total = 0;
@@ -66,6 +117,16 @@ void mostrar4(const int &any, const vector<long> &dades) {
     cout << "Districte " << i << "   ";
     cout << "habitants:" << setw(7) << right << dades[i] << endl;
     total += dades[i];
+  }
+  cout << "TOTAL : " << total << endl;
+}
+
+void mostrar5(const map<int, long> &dades, const int &any, const int &districte) {
+  cout << "Any:" << any << "  Districte:" << districte << endl;
+  long total = 0;
+  for (map<int, long>::const_iterator i = dades.begin(); i != dades.end(); i++) {
+    cout << "Seccio " << i->first << "   habitants:" << setw(7) << right << i->second << endl;
+    total += i->second;
   }
   cout << "TOTAL : " << total << endl;
 }
@@ -90,6 +151,39 @@ void mostrar7(int districte, const map<int, int> &dades) {
   }
 }
 
+void mostrar8(const ResumNivellEstudis &dades) {
+  for (ResumNivellEstudis::const_iterator i = dades.begin(); i != dades.end(); i++) {
+    cout << i->first << ":\n";
+    for (map<int, pair<double, int>>::const_iterator j = i->second.begin(); j != i->second.end(); j++) {
+      cout << "       ";
+      if (j->second.second == 1)
+        cout << "+ ";
+      else if (j->second.second == -1)
+        cout << "- ";
+      else
+        cout << "  ";
+      cout << setw(33) << Any::DISTRICTES[j->first] << "Promig Estudis: " << setw(11) << right << j->second.first << endl;
+    }
+  }
+}
+
+void mostrar9(const ResumNacionalitats &dades){
+  for (ResumNacionalitats::const_iterator i = dades.begin(); i != dades.end(); i++) {
+    cout << i->first << endl;
+    for (map<long, string>::const_iterator j = i->second.begin(); j != i->second.end(); j++) {
+      cout << "       "; 
+      cout << setw(30) << j->first << ":" << setw(11) << right << j->second << endl;
+    }
+  }
+}
+
+void mostrar10(const map<int, string> &dades, const int& nacionalitat){
+  cout << "Codi Nacionalitat:" << nacionalitat << endl;
+  for (map<int, string>::const_iterator i = dades.begin(); i != dades.end(); i++) {
+    cout << i->first << setw(29) << right << i->second << endl;
+  }
+}
+
 void mostrar11(const ResumEdats &dades) {
   for (ResumEdats::const_iterator i = dades.begin(); i != dades.end(); i++) {
     cout << i->first << ": \n";
@@ -97,6 +191,17 @@ void mostrar11(const ResumEdats &dades) {
       cout << "       " << setw(32) << left << ii->second << "Promig Edat:" << setw(11) << right << setprecision(2) << ii->first << endl;
     }
   }
+}
+
+void mostrar12(const map<int, string> &dades){
+  for (map<int, string>::const_iterator i = dades.begin(); i != dades.end(); i++) {
+    cout << setw(8) << i->first << i->second << endl;
+  }
+}
+
+void mostrar13(const pair<string, long> &dades, const int &anyInici, const int &anyFinal){
+  cout << "Any Inicial: " << anyInici << "  Any Final:" << anyFinal << endl;
+  cout << dades.first << setw(6) << right << dades.second << endl;
 }
 
 void mostrar14(int any, int districte, int edat, int codiNacionalitat, const list<string> &dades) {

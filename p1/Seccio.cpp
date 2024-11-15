@@ -1,4 +1,5 @@
 #include "Seccio.h"
+#include "Persona.h"
 
 #include <list>
 #include <string>
@@ -14,10 +15,22 @@ long Seccio::obtenirNumHabitants() const {
   return a_hab.size();
 }
 
+long Seccio::obtenirNumHabitantsEdatEntre(int any, int edat1, int edat2) const{
+  long comptador = 0;
+  for (list<Persona>::const_iterator i = a_hab.begin(); i != a_hab.end(); i++) {
+    int edatPersona = any - i->obtenirAnyNaixement();
+    if (edatPersona >= edat1 && edatPersona <= edat2) {
+      comptador++; 
+    }
+  }
+  return comptador;
+}
+
 list<string> Seccio::estudisEdatNacio(int any, int edat, int nacionalitat) const {
   list<string> aux;
   for (list<Persona>::const_iterator i = a_hab.begin(); i != a_hab.end(); i++) {
-    if (any - i->obtenirAnyNaixement() == edat && i->obtenirCodiPaisNaixement() == nacionalitat) {
+    int edatPersona = any - i->obtenirAnyNaixement();
+    if (edatPersona == edat && i->obtenirCodiPaisNaixement() == nacionalitat) {
       aux.push_back(i->obtenirNivellEstudis());
     }
   }
