@@ -105,7 +105,7 @@ string Any::movimentsComunitat(int codiNacionalitat) const {
   long v_max = a_districtes[1].obtenirNumHabitantsNacio(codiNacionalitat);
   for (int i = 2; i <= N_DISTRICTES; i++) {
     long new_max = a_districtes[i].obtenirNumHabitantsNacio(codiNacionalitat);
-    if (new_max > v_max) {
+    if (new_max >= v_max) {
       max = i;
       v_max = new_max;
     }
@@ -140,7 +140,7 @@ string Any::movimentVells() const {
 }
 
 vector<long> Any::poblacioJovesDistricte() const {
-  vector<long> resultat;
+  vector<long> resultat(7, 0);
   for (int i = 1; i <= N_DISTRICTES; i++) {
     resultat[i] = a_districtes[i].obtenirNumHabitantsEdatEntre(a_any, 20, 30);
   }

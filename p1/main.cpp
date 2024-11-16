@@ -95,15 +95,14 @@ int main() {
       while (!padro.existeixAny(any1)) {
         error("any " + to_string(any1) + " inexistent");
         any1 = demanar_int();
-        break;
       }
       int any2 = demanar_int();
       while (!padro.existeixAny(any2)) {
         error("any " + to_string(any2) + " inexistent");
         any2 = demanar_int();
-        break;
       }
       mostrar13(padro.mesJoves(any1, any2), any1, any2);
+      break;
     }
     case 14: {
       int any = demanar_int();
