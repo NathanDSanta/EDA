@@ -3,11 +3,11 @@ echo "Compilant..."
 g++ -o main *.cpp &&
 
 echo "Executant Padro Curt...."
-time ./main < inPadroCurtMeu.txt $> outPadroCurtMeu.txt
+time ./main < inPadroCurt.txt $> outPadroCurtMeu.txt
 echo " "
 
 echo "Executant Padro Llarg...."
-time ./main < inPadroLlargMeu.txt $> outPadroLlargMeu.txt
+time ./main < inPadroLlarg.txt $> outPadroLlargMeu.txt
 echo " "
 
 echo "Diferencies Padro Curt:"
