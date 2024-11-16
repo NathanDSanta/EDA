@@ -2,8 +2,8 @@
 // u1994947
 // Practica 1
 //
-// @file Districte.h
-// @brief Classe Districte
+/// @file Districte.h
+/// @brief Classe Districte
 
 #ifndef DISTRICTE_H
 #define DISTRICTE_H

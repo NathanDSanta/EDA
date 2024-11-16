@@ -25,8 +25,8 @@ void Districte::afegir(int any, int seccio, int codiNivellEstudis, const string 
   pos->second.afegir(codiNivellEstudis, nivellEstudis, anyNaixement, codiNacionalitat, nomNacionalitat);
   sumaEdats += any - anyNaixement;
   sumaPromigEstudis += codiNivellEstudis;
-  a_resumEstudis.emplace(codiNivellEstudis, nivellEstudis);
   a_resumNacionalitats.emplace(codiNacionalitat, nomNacionalitat);
+  a_resumEstudis.emplace(codiNivellEstudis, nivellEstudis);
   map<int, long>::iterator posicio = a_resumHabitantsNacio.find(codiNacionalitat);
   if (posicio != a_resumHabitantsNacio.end()) {
     posicio->second++;
@@ -59,7 +59,10 @@ set<Nacionalitat> Districte::resumNacionalitats() const {
   return a_resumNacionalitats;
 }
 
-long Districte::obtenirNumHabitantsNacio(int codiNacionalitat) const { return a_resumHabitantsNacio.find(codiNacionalitat)->second; }
+long Districte::obtenirNumHabitantsNacio(int codiNacionalitat) const {
+  map<int, long>::const_iterator pos = a_resumHabitantsNacio.find(codiNacionalitat);
+  return (pos != a_resumHabitantsNacio.end()) ? pos->second : 0;
+}
 
 double Districte::obtenirEdatMitjana() const {
   long habitants = obtenirNumHabitants();

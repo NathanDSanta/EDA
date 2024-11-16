@@ -2,8 +2,8 @@
 // u1994947
 // Practica 1
 //
-// @file Nacionalitat.h
-// @brief Classe Nacionalitat
+/// @file Nacionalitat.h
+/// @brief Classe Nacionalitat
 #ifndef NACIONALITAT_H
 #define NACIONALITAT_H
 #include <cstdlib>

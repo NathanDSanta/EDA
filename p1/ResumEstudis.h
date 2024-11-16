@@ -2,8 +2,8 @@
 // u1994947
 // Practica 1
 //
-// @file ResumEstudis.h
-// @brief Classe ResumEstudis
+/// @file ResumEstudis.h
+/// @brief Classe ResumEstudis
 #include <list>
 #include <map>
 #include <set>

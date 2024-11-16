@@ -2,8 +2,8 @@
 // u1994947
 // Practica 1
 //
-// @file Seccio.h
-// @brief Classe Seccio
+/// @file Seccio.h
+/// @brief Classe Seccio
 #include <list>
 
 #include "Persona.h"

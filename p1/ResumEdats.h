@@ -2,8 +2,8 @@
 // u1994947
 // Practica 1
 //
-// @file ResumEdats.h
-// @brief Classe ResumEdats
+/// @file ResumEdats.h
+/// @brief Classe ResumEdats
 #include <map>
 #include <string>
 #include <vector>

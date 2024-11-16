@@ -7,3 +7,6 @@
 *.txt
 doc*/
 !prova*.txt
+!in*.txt
+!out*.txt
+!script*

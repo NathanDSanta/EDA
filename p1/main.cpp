@@ -1,3 +1,4 @@
+#include <iomanip>
 #include <ios>
 #include <iostream>
 
@@ -18,7 +19,7 @@ string demanar_string() {
 }
 
 int main() {
-  cout << fixed;
+  cout << fixed << setprecision(2);
   Padro padro;
   int opcio = demanar_int();
   while (opcio != 0) {
@@ -52,7 +53,7 @@ int main() {
       }
       int districte = demanar_int();
       while (districte < 1 || districte > 6) {
-        error("districte " + to_string(districte) + " inexistent");
+        error("districte " + to_string(districte) + "inexistent");
         districte = demanar_int();
       }
       mostrar5(padro.obtenirNumHabitantsPerSeccio(any, districte), any, districte);

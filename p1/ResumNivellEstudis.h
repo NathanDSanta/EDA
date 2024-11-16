@@ -2,8 +2,8 @@
 // u1994947
 // Practica 1
 //
-// @file ResumNivellEstudis.h
-// @brief Classe ResumNivellEstudis
+/// @file ResumNivellEstudis.h
+/// @brief Classe ResumNivellEstudis
 #ifndef RESUMNIVELLESTUDIS_H
 #define RESUMNIVELLESTUDIS_H
 

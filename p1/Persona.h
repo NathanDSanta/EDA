@@ -2,8 +2,8 @@
 // u1994947
 // Practica 1
 //
-// @file Persona.h
-// @brief Classe Persona
+/// @file Persona.h
+/// @brief Classe Persona
 #ifndef PERSONA_H
 #define PERSONA_H
 #include "Estudi.h"

@@ -1,6 +1,8 @@
 //
 // Created by jordir on 25/9/21.
 //
+/// @file eines.h
+/// @brief Fitxer d'eines per a la lectura dels arxius csv
 
 #ifndef LECTURA_EINES_H
 #define LECTURA_EINES_H
@@ -15,7 +17,8 @@ using namespace std;
 // primer i següent separador o final de linia
 //          si cometes és cert, quan el token comença per " busca la " que ho
 //          tanca i les elimina del token
-string token(const string &s, char separador, bool cometes, long &primer, long &ultim);
+string token(const string &s, char separador, bool cometes, long &primer,
+             long &ultim);
 
 // pre: --
 // post: --
@@ -26,6 +29,7 @@ string token(const string &s, char separador, bool cometes, long &primer, long &
 //              el primer component està format per tots els caràcters abans del
 //              primer separador l'últim component està format per tots els
 //              caràcters de després de l'últim separador
-vector<string> tokens(const string &s, char separador = ',', bool cometes = false);
+vector<string> tokens(const string &s, char separador = ',',
+                      bool cometes = false);
 
-#endif // LECTURA_EINES_H
+#endif  // LECTURA_EINES_H

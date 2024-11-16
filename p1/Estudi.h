@@ -2,8 +2,8 @@
 // u1994947
 // Practica 1
 //
-// @file Estudi.h
-// @brief Classe Estudi
+/// @file Estudi.h
+/// @brief Classe Estudi
 #ifndef ESTUDI_H
 #define ESTUDI_H
 #include <fstream>

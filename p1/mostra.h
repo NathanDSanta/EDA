@@ -1,6 +1,16 @@
-// FUNCIONS DE MOSTRA
-// Arxiu amb les funcions de mostra del exercici 2 + funcio de mostra
-// format ==> 'mostra$()' on $ es el numero de l'opcio
+// Darius Natan, Santa
+// u1994947
+// Practica 1
+
+/** 
+  @file mostra.h
+  @brief 
+
+  FUNCIONS DE MOSTRA
+  Arxiu amb les funcions de mostra de la practica 
+  format mostra d'opcions ==> 'mostra$()' on $ es el numero de l'opcio 
+*/
+
 #ifndef MOSTRA_H
 #define MOSTRA_H
 #include <algorithm>
@@ -15,7 +25,10 @@
 #include "Padro.h"
 #include "ResumNacionalitats.h"
 
+
+/// Mostra el banner corresponent de la "opcio"
 void banner(const int &opcio);
+/// Mostra el error "missatge" amb el format corresponent
 void error(const string &missatge);
 void mostrar1(const int &linies);
 void mostrar2(const int &any, const bool &existeix);

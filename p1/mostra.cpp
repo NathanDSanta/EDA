@@ -39,7 +39,7 @@ void banner(const int &opcio) {
     break;
   case 5:
     cout << "*******************************************************\n"
-         << "* 05: Obtenir nobmre d'habitants d'un any i districte *\n"
+         << "* 05: Obtenir nombre d'habitants d'un any i districte *\n"
          << "*******************************************************\n";
     break;
   case 6:
@@ -78,9 +78,9 @@ void banner(const int &opcio) {
          << "****************************\n";
     break;
   case 13:
-    cout << "*****************\n"
+    cout << "******************\n"
          << "* 13: Més joves *\n"
-         << "*****************\n";
+         << "******************\n";
     break;
   case 14:
     cout << "********************************************\n"
@@ -153,7 +153,7 @@ void mostrar7(int districte, const map<int, int> &dades) {
 
 void mostrar8(const ResumNivellEstudis &dades) {
   for (ResumNivellEstudis::const_iterator i = dades.begin(); i != dades.end(); i++) {
-    cout << i->first << ":\n";
+    cout << i->first << ": \n";
     for (map<int, pair<double, int>>::const_iterator j = i->second.begin(); j != i->second.end(); j++) {
       cout << "       ";
       if (j->second.second == 1)
@@ -162,7 +162,7 @@ void mostrar8(const ResumNivellEstudis &dades) {
         cout << "- ";
       else
         cout << "  ";
-      cout << setw(33) << Any::DISTRICTES[j->first] << "Promig Estudis: " << setw(11) << right << j->second.first << endl;
+      cout << setw(32) << left << Any::DISTRICTES[j->first] << "Promig Estudis: " << setw(10) << right << j->second.first << endl;
     }
   }
 }
@@ -170,9 +170,10 @@ void mostrar8(const ResumNivellEstudis &dades) {
 void mostrar9(const ResumNacionalitats &dades) {
   for (ResumNacionalitats::const_iterator i = dades.begin(); i != dades.end(); i++) {
     cout << i->first << endl;
-    for (map<long, string>::const_iterator j = i->second.begin(); j != i->second.end(); j++) {
+    for (list<pair<long, Nacionalitat>>::const_reverse_iterator j = i->second.rbegin(); j != i->second.rend(); j++) {
       cout << "       ";
-      cout << setw(30) << j->first << ":" << setw(11) << right << j->second << endl;
+      cout << left << setw(30) << j->second.obtenirNom() + " (" + to_string(j->second.obtenirId()) + ")"
+        << ":" << setw(11) << right << j->first << endl;
     }
   }
 }
@@ -180,7 +181,7 @@ void mostrar9(const ResumNacionalitats &dades) {
 void mostrar10(const map<int, string> &dades, const int &nacionalitat) {
   cout << "Codi Nacionalitat:" << nacionalitat << endl;
   for (map<int, string>::const_iterator i = dades.begin(); i != dades.end(); i++) {
-    cout << i->first << setw(29) << right << i->second << endl;
+    cout << i->first << setw(30) << right << i->second << endl;
   }
 }
 
@@ -195,13 +196,13 @@ void mostrar11(const ResumEdats &dades) {
 
 void mostrar12(const map<int, string> &dades) {
   for (map<int, string>::const_iterator i = dades.begin(); i != dades.end(); i++) {
-    cout << setw(8) << i->first << i->second << endl;
+    cout << setw(8) << left << i->first << i->second << endl;
   }
 }
 
 void mostrar13(const pair<string, long> &dades, const int &anyInici, const int &anyFinal) {
-  cout << "Any Inicial: " << anyInici << "  Any Final:" << anyFinal << endl;
-  cout << dades.first << setw(6) << right << dades.second << endl;
+  cout << "Any Inicial: " << anyInici << "  AnyFinal:" << anyFinal << endl;
+  cout << dades.first << setw(8) << right << dades.second << endl;
 }
 
 void mostrar14(int any, int districte, int edat, int codiNacionalitat, const list<string> &dades) {

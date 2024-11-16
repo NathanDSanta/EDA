@@ -2,8 +2,8 @@
 // u1994947
 // Practica 1
 //
-// @file Any.h
-// @brief Classe Any
+/// @file Any.h
+/// @brief Classe Any
 
 #ifndef ANY_H
 #define ANY_H
@@ -16,6 +16,7 @@
 #include <vector>
 
 #include "Districte.h"
+#include "Nacionalitat.h"
 using namespace std;
 
 /**
@@ -25,7 +26,7 @@ using namespace std;
   En aquesta classe es guarden les dades d'un any en concret del Padro.
 */
 class Any {
-public:
+ public:
   /// Constructor per defecte amb paramaetre any com a inicialitzacio
   /// alternativa
   Any(int any = 0);
@@ -43,7 +44,9 @@ public:
     @post persona afegida al registre d'aquest any
     @brief Aquest metode afegeix una persona al registre d'aquest any
   */
-  void afegir(int any, int districte, int seccio, int codiNivellEstudis, string nivellEstudis, int anyNaixement, int codiNacionalitat, string nomNacionalitat);
+  void afegir(int any, int districte, int seccio, int codiNivellEstudis,
+              string nivellEstudis, int anyNaixement, int codiNacionalitat,
+              string nomNacionalitat);
 
   /**
     @return map<double,string>
@@ -83,12 +86,13 @@ public:
   map<int, pair<double, int>> resumNivellEstudis() const;
 
   /**
-    @return map<long,string>
+    @return list<pair<long,Nacionalitat>>
     @pre cert
     @brief retorna totes les nacionalitats d'aquest any amb el nombre
-    d'habitants per cada nacionalitat
+    d'habitants per cada nacionalitat ordenades per nombre d'habitants i codi de
+    nacionalitat
   */
-  map<long, string> resumNacionalitats() const;
+  list<pair<long, Nacionalitat>> resumNacionalitats() const;
 
   /**
     @return string
@@ -133,7 +137,8 @@ public:
     @brief aquest metode retorna una llista amb els estudis que tenen una
     poblacio d'una determinada edat i nacionalitat d'un districte concret
   */
-  list<string> estudisEdatNacio(int districte, int edat, int codiNacionalitat) const;
+  list<string> estudisEdatNacio(int districte, int edat,
+                                int codiNacionalitat) const;
 
   /// Numero de Districtes
   static const int N_DISTRICTES = 6;
@@ -141,7 +146,7 @@ public:
   /// Nom dels districtes
   static const string DISTRICTES[N_DISTRICTES + 1];
 
-private:
+ private:
   /// any del padro
   int a_any;
 
@@ -149,4 +154,4 @@ private:
   vector<Districte> a_districtes;
 };
 
-#endif // !ANY_H
+#endif  // !ANY_H
