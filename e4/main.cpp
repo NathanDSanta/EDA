@@ -13,6 +13,6 @@ string demanar_path(string missatge = ""){
 
 int main () {
   Horari dades(demanar_path());
-  cout << dades;
+  dades.repartirExamens();
   return 0;
 }
