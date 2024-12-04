@@ -69,7 +69,8 @@ void Horari::repartirExamens() {
     }
     solucio.push_back(solucio_torn);
   }
-  if(hiHaSolucio) mostrar_solucio(solucio);
+  if (hiHaSolucio)
+    mostrar_solucio(solucio);
 }
 
 list<Assignatura>::iterator Horari::seleccionarPrometedor(list<Assignatura> &l) {
@@ -105,11 +106,11 @@ bool Horari::solucioCompletable(const list<Assignatura> &a, const Assignatura &p
   return completable;
 }
 
-void Horari::mostrar_solucio(const vector<list<Assignatura>> &s) const{
+void Horari::mostrar_solucio(const vector<list<Assignatura>> &s) const {
   for (int i = 0; i < s.size(); i++) {
     cout << "Torn: " << i + 1 << endl;
     for (list<Assignatura>::const_iterator j = s[i].begin(); j != s[i].end(); j++) {
-      cout << "\t" << *j; 
+      cout << "\t" << *j;
     }
   }
 }
