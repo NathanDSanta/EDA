@@ -6,7 +6,7 @@
         "type": "cppdbg",
         "request": "launch",
         "program": "${fileDirname}/main",
-        "args": ["assignatures_obligatories.txt"],
+        "args": ["-m","assignatures_obligatories.txt"],
         "stopAtEntry": true,
         "cwd": "${fileDirname}",
         "environment": [],

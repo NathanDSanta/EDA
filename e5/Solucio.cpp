@@ -16,9 +16,10 @@ Solucio::Solucio(const vector<Assignatura> &assignatures, int cr, int gc, int s)
 
 bool Solucio::acceptable(const Candidats &iCand) const {
   bool acceptable = true;
+  acceptable = !aAssignaturaAgafada[iCand.actual()];
   int candidat = iCand.actual();
   Assignatura assig = aDades[candidat];
-  acceptable = !(assig.obtEsGran() && aSolParcial[aNTorns].pleGrans(aGranCapacitat)
+  acceptable = !(aAssignaturaAgafada[candidat] || assig.obtEsGran() && aSolParcial[aNTorns].pleGrans(aGranCapacitat)
                  // aSolParcial[aNTorns].existeixCurs(assig.obtenirGrau())
   );
   return acceptable;
@@ -32,19 +33,25 @@ int Solucio::obtTorns() const { return aNTorns; }
 
 void Solucio::anotar(const Candidats &iCand) {
   aSolParcial[aNTorns].inserir(aDades, iCand.actual());
-  if (aSolParcial[aNTorns].ple(aCapacitatReduida + aGranCapacitat))
+  aAssignaturaAgafada[iCand.actual()] = true;
+  if (aSolParcial[aNTorns].ple(aCapacitatReduida + aGranCapacitat)) {
     aNTorns++;
+    aSolParcial.resize(aSolParcial.size() + 1, Torn());
+  }
   aNiv++;
 }
 
 void Solucio::desanotar(const Candidats &iCand) {
   aSolParcial[aNTorns].eliminar(aDades);
-  if (aSolParcial[aNTorns].buit())
+  aAssignaturaAgafada[iCand.actual()] = false;
+  if (aSolParcial[aNTorns].buit()) {
     aNTorns--;
+    aSolParcial.resize(aSolParcial.size() - 1);
+  }
   aNiv--;
 }
 
-Candidats Solucio::inicialitzarCandidats() { return Candidats(0, aDades.size()); }
+Candidats Solucio::inicialitzarCandidats() { return Candidats(1, aDades.size()); }
 
 ostream &operator<<(ostream &o, const Solucio &s) {
   for (int i = 1; i < s.aSolParcial.size(); i++) {

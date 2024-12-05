@@ -13,11 +13,11 @@ bool Torn::existeixCurs(string curs) const{
 }
 
 bool Torn::pleGrans(int gc) const{
-  return gc < aGcUsades;
+  return gc <= aGcUsades;
 }
 
 bool Torn::ple(int totals) const{
-  return totals < aGcUsades + aCrUsades;
+  return totals <= aGcUsades + aCrUsades;
 }
 
 bool Torn::buit() const{
@@ -36,10 +36,12 @@ void Torn::inserir(const vector<Assignatura> &assig, int candidat) {
 }
 
 void Torn::eliminar(const vector<Assignatura> &assig){
-  if (assig[aExamens.back()].obtEsGran()) aGcUsades--;
-  else aCrUsades--;
-  aCursExisteix.erase(assig[aExamens.back()].obtenirGrau());
-  aExamens.pop_back();
+  // if (!aExamens.empty()) {
+    if (assig[aExamens.back()].obtEsGran()) aGcUsades--;
+    else aCrUsades--;
+    aCursExisteix.erase(assig[aExamens.back()].obtenirGrau());
+    aExamens.pop_back();
+  // }
 }
 
 ostream& operator<<(ostream& o, const Torn& t){

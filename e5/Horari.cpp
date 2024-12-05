@@ -3,6 +3,7 @@
 #include "Solucio.h"
 #include "Solucionador.h"
 #include "eines.h"
+#include <algorithm>
 #include <cstdio>
 #include <fstream>
 #include <string>
@@ -22,6 +23,8 @@ void Horari::llegirDades(string fitxer){
     aAssignatures.push_back(Assignatura(dades[0], dades[1], dades[2], dades[3] == "g", stod(dades[4]), stoi(dades[5]), stoi(dades[6])));
     getline(fin,linia);
   }
+
+  sort(aAssignatures.begin(), aAssignatures.end());
 
   fin.close();
 }
