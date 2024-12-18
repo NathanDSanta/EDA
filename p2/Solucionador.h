@@ -12,7 +12,7 @@ public:
   Solucio obtSolucio();
 
 private:
-  
+  Solucio aOptima;  
 };
 
 #endif // !SOLUCIONADOR_H
