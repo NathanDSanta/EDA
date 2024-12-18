@@ -1,0 +1,16 @@
+#!/bin/bash
+./scriptCompilacio
+
+echo "Executant Programa (opcio -r)..."
+for i in $(seq 1 10);
+do
+  mida="$((4 + RANDOM%100))"
+  echo "Execucio $i (mida: $mida)"
+  ./main -r $mida 
+  echo ""
+done
+echo "Executant Programa (opcio -c)..."
+./main -c
+
+echo "Esborrant executable..."
+rm main

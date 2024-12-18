@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Compilant programa..."
+g++ -o main main.cpp
+echo "Programa compilat"
