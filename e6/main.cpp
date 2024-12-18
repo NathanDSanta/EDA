@@ -50,7 +50,6 @@ void generarDades(vector<Punt> &v, unsigned int n) {
     v.emplace_back(distribucio(generador), distribucio(generador));
   }
 
-  sort(v.begin(), v.end());
 }
 
 // Mètode que calcula en temps quadràctic la distància mínima entre
@@ -112,6 +111,7 @@ void compararAlgoritmes(int n, bool opcioC = false) {
   double distQuadratica = distMinQuadratica(vec, 0, vec.size());
   auto endQuadratic = chrono::high_resolution_clock::now();
 
+  sort(vec.begin(), vec.end());
   auto startDiv = chrono::high_resolution_clock::now();
   double distDiv = distMinDiVRec(vec, 0, vec.size());
   auto endDiv = chrono::high_resolution_clock::now();
@@ -149,11 +149,12 @@ void estudiComplexitat() {
 int main(int argc, char **argv) {
   int punts = 0;
   bool opcioC = false;
+  bool parametreDesconegut = false;
   if (argc < 2) {
     cout << "Error: Nombre d'arguments invalid \nUs: ./e6 [-c | -r <int>]\n";
   } else {
     int i = 1;
-    while (i < argc) {
+    while (i < argc && !parametreDesconegut) {
       string param = string(argv[i]);
       if (param == "-r") {
         punts = stoi(argv[i + 1]);
@@ -161,15 +162,16 @@ int main(int argc, char **argv) {
       } else if (param == "-c") {
         opcioC = true;
       } else {
-        throw "parametre desconegut";
+        cout << "Error: Argument desconegut \nUs: ./e6 [-c | -r <int>]\n";
+        parametreDesconegut = true;
       }
       i++;
     }
   }
 
-  if (opcioC) {
+  if (opcioC && !parametreDesconegut) {
     estudiComplexitat();
-  } else if (punts != 0) {
+  } else if (punts != 0 && !parametreDesconegut) {
     compararAlgoritmes(punts);
   }
   return 0;

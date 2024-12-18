@@ -5,7 +5,7 @@ echo "Executant Programa (opcio -r)..."
 for i in $(seq 1 10);
 do
   mida="$((4 + RANDOM%100))"
-  echo "Execucio $i (mida: $mida)"
+  echo "Execucio $i (avions: $mida)"
   ./main -r $mida 
   echo ""
 done
