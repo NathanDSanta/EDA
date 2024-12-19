@@ -77,7 +77,7 @@ double combinarSolucions(const vector<Punt> &punts, int esq, int dreta,
     while (j < dreta && iElegible) {
       if (punts[j]._x - punts[mig]._x <= minimAB) {
         double dist = distPunts(punts[i], punts[j]);
-        if (dist < minimAB) {
+        if (dist < minim) {
           minim = dist;
         }
       }
