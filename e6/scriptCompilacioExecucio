@@ -11,6 +11,8 @@ do
 done
 echo "Executant Programa (opcio -c)..."
 ./main -c
+echo ""
 
 echo "Esborrant executable..."
+echo ""
 rm main
