@@ -8,7 +8,6 @@
 #include <iomanip>
 #include <iostream>
 #include <limits>
-#include <map>
 #include <random>
 #include <string>
 #include <vector>
@@ -57,9 +56,9 @@ void generarDades(vector<Punt> &v, unsigned int n) {
 double distMinQuadratica(const vector<Punt> &punts, int esq, int dreta) {
   double minim = numeric_limits<double>::max();
   for (int i = esq; i < dreta; i++) {
-    for (int j = esq; j < dreta; j++) {
+    for (int j = i + 1; j < dreta; j++) {
       double dist = distPunts(punts[i], punts[j]);
-      if (dist < minim && i != j) {
+      if (dist < minim) {
         minim = dist;
       }
     }
@@ -70,13 +69,13 @@ double distMinQuadratica(const vector<Punt> &punts, int esq, int dreta) {
 double combinarSolucions(const vector<Punt> &punts, int esq, int dreta,
                          double minimAB) {
   double minim = minimAB;
-  int mig = (dreta - esq) / 2;
+  int mig = (dreta + esq) / 2;
   int i = esq;
   while (i < mig) {
-    bool iElegible = punts[mig]._x - punts[i]._x < minimAB;
-    int j = mig;
+    bool iElegible = punts[mig]._x - punts[i]._x <= minimAB;
+    int j = i + 1;
     while (j < dreta && iElegible) {
-      if (punts[j]._x - punts[mig]._x < minimAB) {
+      if (punts[j]._x - punts[mig]._x <= minimAB) {
         double dist = distPunts(punts[i], punts[j]);
         if (dist < minimAB) {
           minim = dist;
@@ -91,7 +90,7 @@ double combinarSolucions(const vector<Punt> &punts, int esq, int dreta,
 // Mètode que implementa DiV (recursivitat) i calcula la distància mínima
 // entre qualsevol parell d'elements a l'interval [esq,dreta) del vector
 double distMinDiVRec(const vector<Punt> &punts, int esq, int dreta) {
-  if (dreta - esq < 3) {
+  if (dreta - esq < 9) {
     return distMinQuadratica(punts, esq, dreta);
   } else {
     int mig = (dreta + esq) / 2;
