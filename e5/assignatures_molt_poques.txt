@@ -1,0 +1,6 @@
+Grau	Assignatura	Codi	Tipus	Crèdits	Semestre	Curs
+GDDV	Elements matemàtics per a videojocs	3105G13001	g	9.00	1	1
+GDDV	Arquitectures de consoles i dispositius de videojocs	3105G13009	r	7.00	2	1
+GDDV	Formació d'imatges i interacció entre objectes	3105G13010	g	6.00	2	1
+GDDV	Art i videojocs	3105G13031	r	3.00	1	1
+GDDV	Disseny conceptual dels videojocs	3105G13027	r	5.00	2	2
