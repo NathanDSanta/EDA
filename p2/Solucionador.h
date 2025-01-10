@@ -4,15 +4,18 @@
 
 class Solucionador {
 public:
-  Solucionador();
-  void solucionar(const Solucio& inicial, int algoritme);
-  void trobarRapid();
-  void trobarPrimera();
-  void trobarMillor();
-  Solucio obtSolucio();
+  Solucionador() {};
+  Solucio solucionar(const Solucio& inicial, string algoritme);
+  void trobarRapid(Solucio& actual);
+  void trobarPrimera(Solucio& actual);
+  void trobarMillor(Solucio& actual);
+  void mostrarSolucio() const;
 
 private:
   Solucio aOptima;  
+  double desviacioOptima;
+  int tornsOptima;
+  bool aEncertat;
 };
 
 #endif // !SOLUCIONADOR_H

@@ -1,5 +1,9 @@
 #ifndef HORARI_H
 #define HORARI_H
+#include <limits>
+#include <list>
+#include <map>
+#include <set>
 #include <string>
 #include <vector>
 #include "Assignatura.h"
@@ -7,12 +11,17 @@ using namespace std;
 
 class Horari {
 public:
-  Horari();
-  void llegirDades(string fitxer);
-  void generarIMostrarHorari(int cr, int gc, int s, int algoritme) const;
+  Horari(int gc = 1, int cr = 1, int s = 1, int d = numeric_limits<int>::max());
+  void llegirAssignatures(string fitxer);
+  void generarIMostrarHorari(string algoritme = "PRIMER");
+
+  friend ostream& operator<<(ostream& o, const Horari& h);
 
 private:
-  vector<Assignatura> aAssignatures;
+  set<Assignatura> aAssignatures;
+  map<string,set<string>> aRestriccions;
+  vector<string> aAssignaturesOrdenades;
+  int aGranCapacitat, aCapacitatReduida, aSemestre, aDiesMaxims;
 };
 
 #endif // !HORARI_H

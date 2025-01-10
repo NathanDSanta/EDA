@@ -2,19 +2,23 @@
 #define ASSIGNATURA_H
 
 #include <ostream>
+#include <set>
 #include <string>
 using namespace std;
 
 class Assignatura {
 public:
-  friend ostream& operator<<(ostream& o, const Assignatura& a);
 
-  Assignatura(string grau = "", string nom = "", string codi = "", bool esTipusGran = false, double credits = 0, int semestre = 0, int curs = 0);
-  bool operator==(const Assignatura &a) const;
-  bool operator<(const Assignatura &a) const;
+  Assignatura(string codi = "", string nom = "", string grau = "", bool esTipusGran = false, double credits = 0, int semestre = 0, int curs = 0);
 
   bool obtEsGran() const;
-  string obtenirGrau() const;
+  string obtCodi() const;
+  string obtCurs() const;
+  string obtGrau() const;
+
+  bool operator==(const Assignatura &a) const;
+  bool operator<(const Assignatura &a) const;
+  friend ostream& operator<<(ostream& o, const Assignatura& a);
 
 private:
   string aGrau;

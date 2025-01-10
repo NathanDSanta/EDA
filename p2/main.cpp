@@ -1,6 +1,7 @@
 #include "Horari.h"
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <string>
 using namespace std;
 
@@ -15,7 +16,8 @@ int main (int argc, char *argv[]) {
     int capacitatReducida = 1;
     int granCapacitat = 1;
     int semestre = 1;
-    int algoritme = 0;
+    int duracioMaxima = numeric_limits<int>::max();
+    string algoritme = "PRIMER";
     string fitxer = "";
     int i = 1;
     while (i < argc && fitxer == ""){
@@ -33,8 +35,12 @@ int main (int argc, char *argv[]) {
           semestre = stoi(argv[i + 1]);
           i++;
         } 
-        else if(element_actual == "m") algoritme = 1;
-        else if(element_actual == "v") algoritme = -1;
+        else if(element_actual == "d"){
+          duracioMaxima = stoi(argv[i + 1]);
+          i++;
+        } 
+        else if(element_actual == "m") algoritme = "MILLOR";
+        else if(element_actual == "v") algoritme = "RAPID";
         else throw "invalid argument " + string(argv[i]);
       }
       else fitxer = string(argv[i]);
@@ -44,11 +50,15 @@ int main (int argc, char *argv[]) {
     cout << capacitatReducida << endl
       << granCapacitat << endl
       << semestre << endl
+      << duracioMaxima << endl
       << algoritme << endl
       << fitxer << endl;
+
+    Horari setmanaExamens(granCapacitat,capacitatReducida,semestre,duracioMaxima);
+    setmanaExamens.llegirAssignatures(fitxer);
+    cout << setmanaExamens;
+
+    setmanaExamens.generarIMostrarHorari(algoritme);
   }
-
-  Horari setmanaExamens;
-
   return 0;
 }
