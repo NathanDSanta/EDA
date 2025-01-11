@@ -7,6 +7,8 @@
 *.txt
 doc*/
 !prova*.txt
+!Doxyfile
+!llegeix*.txt
 !assignatures*.txt
 !in*.txt
 !out*.txt

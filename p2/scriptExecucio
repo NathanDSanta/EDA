@@ -1,0 +1,24 @@
+#!/bin/bash
+echo "Compilant..."
+g++ -o main *.cpp &&
+
+echo "Executant Assignatures molt Poques...."
+echo "Rapid (valors predeterminats)"
+./main -v assignatures_molt_poques.txt
+echo "Primer (valors predeterminats)"
+./main assignatures_molt_poques.txt
+echo " "
+
+echo "Executant Assignatures Poques...."
+echo "Rapid (gc 2, cr 3)"
+./main -v -gc 2 -cr 3 assignatures_poques.txt
+echo "Primer (gc 2, cr 3)"
+./main -gc 2 -cr 3 assignatures_poques.txt
+echo " "
+
+echo "Executant Assignatures Obligatories...."
+echo "Rapid (gc 2, cr 3)"
+./main -v -gc 2 -cr 3 assignatures_obligatories.txt
+echo "Primer (gc 2, cr 3)"
+./main -gc 2 -cr 3 assignatures_obligatories.txt
+echo " "

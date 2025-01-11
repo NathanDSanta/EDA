@@ -1,0 +1,20 @@
+
+El programa te diversos errors:
+ - No deixa espais buits
+ - No te en compte la opcio -d
+ - la opcio -m no funciona (o tarda massa, no estic segur)
+ - el programa no es gaire eficient (tarda 0.3 segons quan al exemple mostrat tarda 0.001 segons)
+ - no hi ha missatges de error quan els parametres del programa son incorrectes
+
+Les opcions que funcionen:
+ - opcio -h (evidentment)
+ - opcio -v (amb possibilitat de deixar espai buit)
+ - opcio predeterminada (la opcio de trobar la primera solucio, sense deixar espais buits)
+ - opcions de configuracio -gc -cr
+ - calcul de la desviacio i del temps
+
+Altres anotacions:
+
+es probable que la funcio -m funcioni, pero al no tenir un programa gaire eficient, tambe pot ser que sigui incapaç de
+iterar per totes les possibles solucions. No em fa gaire gust enviar el progama d'aquesta manera, pero no he aconseguit
+veure on esta l'error :(
