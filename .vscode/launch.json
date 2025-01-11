@@ -6,7 +6,7 @@
         "type": "cppdbg",
         "request": "launch",
         "program": "${fileDirname}/main",
-        "args": ["-m", "-cr", "3", "-gc", "5", "assignatures_poques.txt"],
+        "args": ["-v","-cr", "3", "-gc", "5", "assignatures_poques.txt"],
         "stopAtEntry": true,
         "cwd": "${fileDirname}",
         "environment": [],

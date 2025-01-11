@@ -8,7 +8,7 @@ using namespace std;
 
 class Torn {
 public:
-  Torn();
+  Torn(int gc = 1, int cr = 1);
   bool ple() const;
   bool buit() const;
   bool gcCompletes(int aGcMax) const;
@@ -16,16 +16,18 @@ public:
   bool existeixAlgunaAssignatura(set<string> assignatures) const;
 
   list<string> obtExamens() const;
+  set<string> obtGrauCursos() const;
 
-  void anotar(string codiGrauCurs, string assignatura);
-  void desanotar(string CodiGrauCurs, string assignatura);
+  void anotar(string codiGrauCurs, string assignatura, bool esGran);
+  void desanotar(string CodiGrauCurs, string assignatura, bool esGran);
 
   friend ostream& operator<<(ostream& o, const Torn& t);
 
 private:
   list<string> aExamens;
-  set<string> grauCursos;
+  set<string> aGrauCursos;
   int aGcUsades, aCrUsades;
+  int aGcMax, aCrMax;
 };
 
 #endif // !TORN_H

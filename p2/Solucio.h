@@ -8,6 +8,7 @@
 #include <ostream>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 using namespace std;
 
@@ -28,7 +29,10 @@ public:
   void anotar(const Candidats& iCand);
   void desanotar(const Candidats& iCand);
 
+
   friend ostream& operator<<(ostream& o, const Solucio& s);
+
+  bool solucioRapida();
 
 private:
   set<Assignatura> aAssignatures;
@@ -41,6 +45,10 @@ private:
   int aGcMax, aCrMax, aDiesMax;
   
   map<string, double> obtDesviacioGrauCurs() const;
+  pair<int, string> seleccionarPrometedor(const map<int,string>& candidats) const;
+  bool completaR() const;
+  bool completableR(string x) const;
+  void afegirR(string x);
 };
 
 #endif // !SOLUCIO_H

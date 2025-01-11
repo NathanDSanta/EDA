@@ -7,19 +7,28 @@ using namespace std;
 Solucio Solucionador::solucionar(const Solucio &inicial, string algoritme) {
   Solucio actual = inicial;
   aEncertat = false;
-  tornsOptima = numeric_limits<int>::max();
-  desviacioOptima = 0;
+  aTornsOptima = numeric_limits<int>::max();
+  aDesviacioOptima = 0;
   aOptima = inicial;
-  if (algoritme == "RAPID")
+  if (algoritme == "RAPID") {
     trobarRapid(actual);
-  else if(algoritme == "PRIMER")
+    aOptima = actual;
+  } else if (algoritme == "PRIMER") {
     trobarPrimera(actual);
-  else //algoritme == "MILLOR" 
+    aOptima = actual;
+  } else // algoritme == "MILLOR"
     trobarMillor(actual);
-  return aOptima;
+  return actual;
 }
 
-void Solucionador::trobarRapid(Solucio &actual) {}
+void Solucionador::trobarRapid(Solucio &actual) {
+  aEncertat = actual.solucioRapida();   
+  if (aEncertat) {
+    aOptima = actual;
+    aDesviacioOptima = actual.obtDesviacioMitjana();
+    aTornsOptima = aOptima.obtTorns();
+  }
+}
 
 void Solucionador::trobarPrimera(Solucio &actual) {
   Candidats iCand = actual.inicialitzarCandidats();
@@ -33,6 +42,9 @@ void Solucionador::trobarPrimera(Solucio &actual) {
         }
       } else {
         aEncertat = true;
+        aOptima = actual;
+        aDesviacioOptima = actual.obtDesviacioMitjana();
+        aTornsOptima = actual.obtTorns();
       }
     }
     iCand++;
@@ -42,25 +54,31 @@ void Solucionador::trobarPrimera(Solucio &actual) {
 void Solucionador::trobarMillor(Solucio &actual) {
   Candidats iCand = actual.inicialitzarCandidats();
   while (!iCand.esFi()) {
-    if (actual.completable() && actual.acceptable(iCand)) {
+    if (actual.acceptable(iCand) && actual.completable()) {
       actual.anotar(iCand);
       if (!actual.completa()) {
-        trobarPrimera(actual);
+        trobarMillor(actual);
       } else {
-        if (actual.esMillor(tornsOptima, desviacioOptima)) {
+        if (actual.esMillor(aTornsOptima, aDesviacioOptima)) {
+          aEncertat = true;
           aOptima = actual;
-          desviacioOptima = actual.obtDesviacioMitjana();
-          tornsOptima = actual.obtTorns();
+          aDesviacioOptima = actual.obtDesviacioMitjana();
+          aTornsOptima = actual.obtTorns();
         }
       }
       actual.desanotar(iCand);
     }
+    cout << "candidat: " << iCand.actual() << endl;
     iCand++;
   }
 }
 
-void Solucionador::mostrarSolucio() const{
-  cout << "Solucio: \n" << aOptima << endl
-  << "Desviacio: " << desviacioOptima << endl
-  << "Torns: " << tornsOptima << endl;
+void Solucionador::mostrarSolucio() const { 
+  if (aEncertat) {
+    cout << "Solucio: \n" << aOptima << endl 
+      << "Desviacio: " << aDesviacioOptima << endl 
+      << "Torns: " << aTornsOptima << endl; 
+  } else {
+    cout << "No s'ha trobat cap solucio\n";
+  }
 }

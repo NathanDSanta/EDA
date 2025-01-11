@@ -17,11 +17,6 @@ int Candidats::actual() const{
   return aActual;
 }
 
-string Candidats::seleccionarPrometedor() const{
-  std::cout << "Candidats::seleccionarPrometedor no implementat";
-  return "";
-}
-
 void Candidats::eliminar(){
   std::cout << "Candidats::eliminar no implementat";
 }

@@ -13,9 +13,10 @@ public:
 
 private:
   Solucio aOptima;  
-  double desviacioOptima;
-  int tornsOptima;
+  double aDesviacioOptima;
+  int aTornsOptima;
   bool aEncertat;
+  bool aRapid;
 };
 
 #endif // !SOLUCIONADOR_H

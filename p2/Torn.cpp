@@ -2,13 +2,15 @@
 #include <list>
 #include <string>
 
-Torn::Torn(){
+Torn::Torn(int gc, int cr){
   aGcUsades = 0;
   aCrUsades = 0;
+  aGcMax = gc;
+  aCrMax = cr;
 }
 
 bool Torn::ple() const{
-  return aExamens.size() == aGcUsades + aCrUsades;
+  return aGcMax + aCrMax == aGcUsades + aCrUsades;
 }
 
 bool Torn::buit() const{
@@ -20,7 +22,7 @@ bool Torn::gcCompletes(int aGcMax) const{
 }
 
 bool Torn::existeixGrauCurs(string codiGrauCurs) const{
-  return grauCursos.find(codiGrauCurs) != grauCursos.end();
+  return aGrauCursos.find(codiGrauCurs) != aGrauCursos.end();
 }
 
 bool Torn::existeixAlgunaAssignatura(set<string> assignatures) const{
@@ -40,17 +42,31 @@ list<string> Torn::obtExamens() const{
   return aExamens;
 }
 
-void Torn::anotar(string codiGrauCurs, string assignatura){
-  aExamens.push_back(assignatura);
-  grauCursos.insert(codiGrauCurs);
+set<string> Torn::obtGrauCursos() const{
+  return aGrauCursos;
 }
 
-void Torn::desanotar(string codiGrauCurs, string assignatura){
+void Torn::anotar(string codiGrauCurs, string assignatura, bool esGran){
+  aExamens.push_back(assignatura);
+  aGrauCursos.insert(codiGrauCurs);
+  if (esGran) {
+    aGcUsades++;
+  } else {
+    aCrUsades++;
+  }
+}
+
+void Torn::desanotar(string codiGrauCurs, string assignatura, bool esGran){
   if (aExamens.back() != assignatura) {
     throw "l'ultim element no es la assignatura que vols eliminar";
   }
   aExamens.pop_back();
-  grauCursos.erase(codiGrauCurs);
+  aGrauCursos.erase(codiGrauCurs);
+  if (!esGran) {
+    aGcUsades--;
+  } else {
+    aCrUsades--;
+  }
 }
 
 ostream& operator<<(ostream& o, const Torn& t){

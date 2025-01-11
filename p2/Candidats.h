@@ -9,7 +9,6 @@ public:
   Candidats(int inici = 0, int final = numeric_limits<int>::max());
   bool esFi() const;
   int actual() const;
-  string seleccionarPrometedor() const;
   void eliminar();
   void operator++(int);
 
