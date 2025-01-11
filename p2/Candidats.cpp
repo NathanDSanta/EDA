@@ -1,5 +1,10 @@
+// Darius Natan Santa
+// u1994947
+// Practica 2
+//
+/// @file Candidats.cpp
+/// @brief Implementacio de la classe Candidats
 #include "Candidats.h"
-#include <iostream>
 
 Candidats::Candidats(int inici, int final){
   aActual = inici;
@@ -7,7 +12,7 @@ Candidats::Candidats(int inici, int final){
 }
 
 bool Candidats::esFi() const{
-  return aActual == aMax;
+  return aActual >= aMax; //- 1;
 }
 
 int Candidats::actual() const{
@@ -17,12 +22,9 @@ int Candidats::actual() const{
   return aActual;
 }
 
-void Candidats::eliminar(){
-  std::cout << "Candidats::eliminar no implementat";
-}
-
 void Candidats::operator++(int){
-  if (!esFi()) {
-    aActual++; 
+  if (esFi()) {
+    throw "es el final";
   }
+  aActual++; 
 }

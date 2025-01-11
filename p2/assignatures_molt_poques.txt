@@ -1,0 +1,13 @@
+Grau	Assignatura	Codi	Tipus	Crèdits	Semestre	Curs
+GDDV	Elements matemàtics per a videojocs	3105G13001	r	9.00	1	1
+GDDV	Arquitectures de consoles i dispositius de videojocs	3105G13009	r	7.00	2	1
+GEINF	Àlgebra	3105G07001	g	6.00	1	1
+GEINF	Càlcul	3105G07002	g	6.00	1	1
+GEINF	Multimèdia i interfícies d'usuari	3105G07012	g	5.00	1	3
+GEINF	Fonaments de computació	3105G07013	r	5.00	1	3
+GEB	Fonaments de física 1	3105G00001	g	6.00	1	1
+GEB	Anatomia funcional i biomecànica	3109G01057	r	5.00	2	2
+GEB	Gestió intel·ligent de dades i coneixement mèdic	3105G15009	r	5.00	1	3
+*
+3105G07001	3105G13001
+3105G07002	3105G13001

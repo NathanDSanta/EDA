@@ -1,7 +1,14 @@
+// Darius Natan Santa
+// u1994947
+// Practica 2
+//
+/// @file Solucio.cpp
+/// @brief Implementacio de la classe Solucio
 #include "Solucio.h"
+#include "Assignatura.h"
 #include "Candidats.h"
 #include <cmath>
-#include <deque>
+#include <iomanip>
 #include <iostream>
 #include <map>
 #include <set>
@@ -10,37 +17,39 @@
 #include <vector>
 
 
-Solucio::Solucio(set<Assignatura> &assig, map<string, set<string>> &restriccions, vector<string> &assigOrd, int gc, int cr, int d) {
+Solucio::Solucio(vector<Assignatura> &assig, map<int, set<int>> &restriccions, int gc, int cr, int d) {
   aAssignatures = assig;
   aRestriccions = restriccions;
-  aAssignaturesOrdenades = assigOrd;
+  aAssignaturesUtilitzada = vector(aAssignatures.size(), false);
   aGcMax = gc;
   aCrMax = cr;
   aDiesMax = d;
   aNiv = 0;
-  Torn buit(gc, cr);
-  aSolucioActual.push_back(buit);
   aTorns = 1;
 }
 
-Candidats Solucio::inicialitzarCandidats() { return Candidats(0, aAssignaturesOrdenades.size()); }
+Candidats Solucio::inicialitzarCandidats() { return Candidats(0, aAssignatures.size()); }
 
 bool Solucio::acceptable(const Candidats &iCand) const {
-  string assig = aAssignaturesOrdenades.at(iCand.actual());
-  set<Assignatura>::const_iterator assigInfo = aAssignatures.find(Assignatura(assig));
-  map<string,set<string>>::const_iterator assigRestrict = aRestriccions.find(assig);
-  string codiGrauCurs = assigInfo->obtGrau() + assigInfo->obtCurs(); 
-
-  //comprovar capacitat
-  if (assigInfo->obtEsGran() && aSolucioActual.back().gcCompletes(aGcMax)) {
-    return false;
+  //comprovar si s'ha anotat
+  if (aAssignaturesUtilitzada.at(iCand.actual())) {
+    return false; 
   }
+  Assignatura assig = aAssignatures.at(iCand.actual());
+  string codiGrauCurs = assig.obtGrau() + assig.obtCurs(); 
 
   //comprovar restriccio Grau-Curs
   if (!aSolucioActual.empty() && aSolucioActual.back().existeixGrauCurs(codiGrauCurs)) {
     return false;
   }
 
+  //comprovar capacitat
+  if (assig.obtEsGran() && aSolucioActual.back().gcCompletes()) {
+    return false;
+  }
+
+
+  map<int,set<int>>::const_iterator assigRestrict = aRestriccions.find(iCand.actual());
   //comprovar llista de restriccions addicionals
   if (!aSolucioActual.empty() && assigRestrict != aRestriccions.end() && aSolucioActual.back().existeixAlgunaAssignatura(assigRestrict->second)) {
     return false;
@@ -57,6 +66,10 @@ bool Solucio::esMillor(int tornsOptima, double desviacioOptima) const{
   return aTorns <= tornsOptima && obtDesviacioMitjana() >= desviacioOptima;
 }
 
+bool Solucio::esMillorable(int tornsOptima) const{
+  return aTorns <= tornsOptima;
+}
+
 double Solucio::obtDesviacioMitjana() const {
   map<string, double> desviacions = obtDesviacioGrauCurs();
   double suma = 0;
@@ -69,10 +82,15 @@ double Solucio::obtDesviacioMitjana() const {
 int Solucio::obtTorns() const { return aTorns; }
 
 void Solucio::anotar(const Candidats &iCand) {
-  string assig = aAssignaturesOrdenades.at(iCand.actual());
-  set<Assignatura>::const_iterator assigInfo = aAssignatures.find(Assignatura(assig));
-  string codiGrauCurs = assigInfo->obtGrau() + assigInfo->obtCurs(); 
-  aSolucioActual.back().anotar(codiGrauCurs,assig, assigInfo->obtEsGran());
+  Assignatura assig = aAssignatures.at(iCand.actual());
+  string codiGrauCurs = assig.obtGrau() + assig.obtCurs(); 
+  if (aSolucioActual.empty()) {
+    Torn nouTorn(aGcMax, aCrMax);
+    aSolucioActual.push_back(nouTorn);
+    aTorns++;
+  }
+  aSolucioActual.back().anotar(codiGrauCurs,iCand.actual(), assig.obtEsGran());
+  aAssignaturesUtilitzada[iCand.actual()] = true;
   if (aSolucioActual.back().ple()) {
     Torn nouTorn(aGcMax, aCrMax);
     aSolucioActual.push_back(nouTorn);
@@ -82,10 +100,10 @@ void Solucio::anotar(const Candidats &iCand) {
 }
 
 void Solucio::desanotar(const Candidats &iCand) {
-  string assig = aAssignaturesOrdenades.at(iCand.actual());
-  set<Assignatura>::const_iterator assigInfo = aAssignatures.find(Assignatura(assig));
-  string codiGrauCurs = assigInfo->obtGrau() + assigInfo->obtCurs(); 
-  aSolucioActual.back().desanotar(codiGrauCurs,assig, assigInfo->obtEsGran());
+  Assignatura assig = aAssignatures.at(iCand.actual());
+  string codiGrauCurs = assig.obtGrau() + assig.obtCurs(); 
+  aSolucioActual.back().desanotar(codiGrauCurs,iCand.actual(), assig.obtEsGran());
+  aAssignaturesUtilitzada[iCand.actual()] = false;
   if (aSolucioActual.back().buit()) {
     aSolucioActual.pop_back();
     aTorns--;
@@ -146,15 +164,16 @@ map<string, double> Solucio::obtDesviacioGrauCurs() const {
 ostream& operator<<(ostream& o, const Solucio& s) {
   int comptador = 1;
   for (list<Torn>::const_iterator i = s.aSolucioActual.begin(); i != s.aSolucioActual.end(); i++) {
-    o << "Torn " << comptador << endl;
-    list<string> llistaExamens = i->obtExamens();
-    for (list<string>::const_iterator j = llistaExamens.begin(); j != llistaExamens.end(); j++) {
-      if (*j == "") {
-        o << "Sense examen" << endl;
-      } else{
-        o << *s.aAssignatures.find(Assignatura(*j)) << endl;
+    list<int> llistaExamens = i->obtExamens();
+    o << "*********************************\n";
+    o << "* Torn " << comptador  << setw(21) << right << "n=" << llistaExamens.size() << "  *\n";
+    o << "*-------------------------------*\n";
+    for (list<int>::const_iterator j = llistaExamens.begin(); j != llistaExamens.end(); j++) {
+      if (*j != -1) {
+        o << "* " << s.aAssignatures.at(*j) << " *\n";
       }
     }
+    o << "*********************************\n\n";
     comptador++;
   } 
   return o;
@@ -162,33 +181,33 @@ ostream& operator<<(ostream& o, const Solucio& s) {
 
 bool Solucio::solucioRapida(){
   bool trobat = false;
-  int comptador = 1;
-  map<int,string> candidats;
-  for (vector<string>::const_iterator i = aAssignaturesOrdenades.begin(); i != aAssignaturesOrdenades.end(); i++) {
-    candidats.insert(pair(comptador, *i));
-    comptador++;
-  }
-  while (!completaR() && !candidats.empty()) {
-    pair<int,string> x = seleccionarPrometedor(candidats); 
-    candidats.erase(x.first);
+  while (!completaR() && quedenCandidats()) {
+    int x = seleccionarPrometedor(); 
+    if (x != -1) {
+      aAssignaturesUtilitzada[x] = true;
+    }
     if (completable()) {
-      afegirR(x.second);
+      afegirR(x);
     }
   }
   return completaR();
 }
 
-pair<int, string> Solucio::seleccionarPrometedor(const map<int,string>& candidats) const{
+int Solucio::seleccionarPrometedor() const{
   bool trobat = false;
-  map<int,string>::const_iterator i = candidats.begin();
-  while (i != candidats.end() && !trobat) {
-    string assig = i->second;
-    set<Assignatura>::const_iterator assigInfo = aAssignatures.find(Assignatura(assig));
-    map<string,set<string>>::const_iterator assigRestrict = aRestriccions.find(assig);
-    string codiGrauCurs = assigInfo->obtGrau() + assigInfo->obtCurs(); 
+  int i = 0;
+  while (i < aAssignatures.size() && !trobat) {
+    if (aAssignaturesUtilitzada.at(i)) {
+      i++;
+      continue;
+    }
+    Assignatura assig = aAssignatures.at(i);
+    map<int,set<int>>::const_iterator assigRestrict = aRestriccions.find(i);
+    string codiGrauCurs = assig.obtGrau() + assig.obtCurs(); 
+
 
     //comprovar capacitat
-    if (assigInfo->obtEsGran() && aSolucioActual.back().gcCompletes(aGcMax)) {
+    if (assig.obtEsGran() && aSolucioActual.back().gcCompletes()) {
       i++;
       continue;
     }
@@ -208,29 +227,47 @@ pair<int, string> Solucio::seleccionarPrometedor(const map<int,string>& candidat
     trobat = true;
   }
   if (trobat) {
-    return *i; 
+    return i; 
   }
-  else return pair(0,"");
+  else return -1;
 }
 
 bool Solucio::completaR() const{
-  return aNiv >= aAssignaturesOrdenades.size();
+  return aNiv >= aAssignatures.size();
 }
 
 bool Solucio::completableR(string x) const{
   return aTorns/2 < aDiesMax;
 }
 
-void Solucio::afegirR(string x){
-  if (x != "") {
-    set<Assignatura>::const_iterator assigInfo = aAssignatures.find(Assignatura(x));
-    string codiGrauCurs = assigInfo->obtGrau() + assigInfo->obtCurs();
-    aSolucioActual.back().anotar(codiGrauCurs, x, assigInfo->obtEsGran());
-  }
-  if (aSolucioActual.back().ple() || x == "") {
+void Solucio::afegirR(int x){
+  if (aSolucioActual.empty()) {
     Torn nouTorn(aGcMax, aCrMax);
     aSolucioActual.push_back(nouTorn);
     aTorns++;
   }
-  if (x != "") aNiv++;
+  if (x != -1) {
+    Assignatura assig = aAssignatures.at(x);
+    string codiGrauCurs = assig.obtGrau() + assig.obtCurs();
+    aSolucioActual.back().anotar(codiGrauCurs, x, assig.obtEsGran());
+  }
+  if (aSolucioActual.back().ple() || x == -1) {
+    Torn nouTorn(aGcMax, aCrMax);
+    aSolucioActual.push_back(nouTorn);
+    aTorns++;
+  }
+  if (x != -1) aNiv++;
+}
+
+bool Solucio::quedenCandidats() const{
+  bool queden = false;
+  int i = 0;
+  while (!queden && i < aAssignaturesUtilitzada.size()) {
+    if (!aAssignaturesUtilitzada.at(i)) {
+      queden = true; 
+    } else{
+      i++; 
+    } 
+  }
+  return queden;
 }

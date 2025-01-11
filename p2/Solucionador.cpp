@@ -1,3 +1,9 @@
+// Darius Natan Santa
+// u1994947
+// Practica 2
+//
+/// @file Solucionador.cpp
+/// @brief Implementacio de la classe Solucionador
 #include "Solucionador.h"
 #include "Solucio.h"
 #include <iostream>
@@ -54,7 +60,7 @@ void Solucionador::trobarPrimera(Solucio &actual) {
 void Solucionador::trobarMillor(Solucio &actual) {
   Candidats iCand = actual.inicialitzarCandidats();
   while (!iCand.esFi()) {
-    if (actual.acceptable(iCand) && actual.completable()) {
+    if (actual.acceptable(iCand) && actual.completable() && actual.esMillorable(aTornsOptima)) {
       actual.anotar(iCand);
       if (!actual.completa()) {
         trobarMillor(actual);
@@ -68,17 +74,18 @@ void Solucionador::trobarMillor(Solucio &actual) {
       }
       actual.desanotar(iCand);
     }
-    cout << "candidat: " << iCand.actual() << endl;
     iCand++;
   }
 }
 
-void Solucionador::mostrarSolucio() const { 
+void Solucionador::mostrarSolucio(double temps) const { 
   if (aEncertat) {
-    cout << "Solucio: \n" << aOptima << endl 
-      << "Desviacio: " << aDesviacioOptima << endl 
-      << "Torns: " << aTornsOptima << endl; 
+    cout << aOptima << endl 
+      << "Num. torns: " << aTornsOptima - 1 << endl 
+      << "Num. dies: " << (aTornsOptima-1)/2 << endl
+      << "Desviacio: " << aDesviacioOptima << endl;
   } else {
-    cout << "No s'ha trobat cap solucio\n";
+    cout << "\n\nNo hi ha solucio per la configuracio indicada\n";
   }
+  cout << "Temps: " << temps << " segons" << endl;
 }
